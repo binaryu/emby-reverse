@@ -121,6 +121,8 @@ func TestHandleAuthCheckExposesSingleAdminModeBeforeSetup(t *testing.T) {
 	if got := mustStringValue(t, body, "mode"); got != "single_admin" {
 		t.Fatalf("mode = %q, want single_admin", got)
 	}
+	// Before the first admin exists, surfacing the ephemeral-secret warning
+	// to whoever is about to bootstrap is fine and expected.
 	if got := mustBoolValue(t, body, "jwt_secret_ephemeral"); !got {
 		t.Fatalf("jwt_secret_ephemeral = %v, want true", got)
 	}
@@ -150,8 +152,9 @@ func TestHandleAuthCheckExposesConfiguredSingleAdminMode(t *testing.T) {
 	if got := mustStringValue(t, body, "mode"); got != "single_admin" {
 		t.Fatalf("mode = %q, want single_admin", got)
 	}
-	if got := mustBoolValue(t, body, "jwt_secret_ephemeral"); got {
-		t.Fatalf("jwt_secret_ephemeral = %v, want false", got)
+	// Admin exists: the ephemeral flag is internal state and must not leak.
+	if _, leaked := body["jwt_secret_ephemeral"]; leaked {
+		t.Fatalf("jwt_secret_ephemeral must NOT be exposed once an admin exists (got %v)", body["jwt_secret_ephemeral"])
 	}
 }
 

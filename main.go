@@ -6,6 +6,7 @@ import (
 	"crypto/hmac"
 	"crypto/rand"
 	"crypto/sha256"
+	"crypto/subtle"
 	"crypto/tls"
 	"crypto/x509"
 	"database/sql"
@@ -111,7 +112,8 @@ func validateToken(token string) (int64, string, error) {
 		return 0, "", fmt.Errorf("invalid token")
 	}
 	expectedSig := hmacSHA256(parts[0]+"."+parts[1], jwtSecret)
-	if parts[2] != expectedSig {
+	// Constant-time compare to defeat timing side-channel on signature bytes.
+	if subtle.ConstantTimeCompare([]byte(parts[2]), []byte(expectedSig)) != 1 {
 		return 0, "", fmt.Errorf("invalid signature")
 	}
 	payload, err := base64urlDecode(parts[1])
@@ -1829,6 +1831,16 @@ func diagnoseSite(site *Site, pm *ProxyManager) DiagResult {
 type App struct {
 	db *DB
 	pm *ProxyManager
+
+	// loginLimiter bounds brute-force attempts on /api/auth/login.
+	// Keyed by "<ip>:<username>". Protected by loginMu.
+	loginMu       sync.Mutex
+	loginAttempts map[string]*loginState
+}
+
+type loginState struct {
+	failures int
+	lockedUntil time.Time
 }
 
 func (a *App) jsonOK(w http.ResponseWriter, data interface{}) {
@@ -1856,6 +1868,61 @@ func (a *App) authMiddleware(next http.HandlerFunc) http.HandlerFunc {
 		}
 		next(w, r)
 	}
+}
+
+// loginRateLimit bounds password brute-force per <ip, username>.
+const (
+	loginMaxFails   = 5
+	loginLockWindow = 15 * time.Minute
+	loginScrubEvery = 10 * time.Minute
+)
+
+func (a *App) loginLocked(key string) bool {
+	a.loginMu.Lock()
+	defer a.loginMu.Unlock()
+	st := a.loginAttempts[key]
+	if st == nil {
+		return false
+	}
+	if !st.lockedUntil.IsZero() {
+		if time.Now().Before(st.lockedUntil) {
+			return true
+		}
+		// Lockout expired: scrub after grace period so failed attempts that
+		// never hit the lockout threshold don't get wiped by time.Since(zero).
+		if time.Since(st.lockedUntil) > loginScrubEvery {
+			delete(a.loginAttempts, key)
+		}
+	}
+	return false
+}
+
+func (a *App) loginRecordFailure(key string) {
+	a.loginMu.Lock()
+	defer a.loginMu.Unlock()
+	st := a.loginAttempts[key]
+	if st == nil {
+		st = &loginState{}
+		a.loginAttempts[key] = st
+	}
+	st.failures++
+	if st.failures >= loginMaxFails {
+		st.lockedUntil = time.Now().Add(loginLockWindow)
+	}
+}
+
+func (a *App) loginRecordSuccess(key string) {
+	a.loginMu.Lock()
+	defer a.loginMu.Unlock()
+	delete(a.loginAttempts, key)
+}
+
+func loginKey(r *http.Request, username string) string {
+	ip := clientIPFromRemoteAddr(r.RemoteAddr)
+	if prior := r.Header.Get("X-Forwarded-For"); prior != "" {
+		ip = strings.TrimSpace(strings.Split(prior, ",")[0])
+	}
+	return ip + "|" + username
 }
 
 // POST /api/auth/setup
@@ -1903,11 +1970,19 @@ func (a *App) handleLogin(w http.ResponseWriter, r *http.Request) {
 		a.jsonErr(w, 400, "invalid request")
 		return
 	}
-	id, err := a.db.VerifyUser(req.Username, req.Password)
-	if err != nil {
-		a.jsonErr(w, 401, err.Error())
+	key := loginKey(r, req.Username)
+	if a.loginLocked(key) {
+		// Don't reveal whether this user exists.
+		a.jsonErr(w, 429, "too many failed attempts; try again in a few minutes")
 		return
 	}
+	id, err := a.db.VerifyUser(req.Username, req.Password)
+	if err != nil {
+		a.loginRecordFailure(key)
+		a.jsonErr(w, 401, "invalid username or password")
+		return
+	}
+	a.loginRecordSuccess(key)
 	token, err := generateToken(id, req.Username)
 	if err != nil {
 		a.jsonErr(w, 500, err.Error())
@@ -1918,13 +1993,17 @@ func (a *App) handleLogin(w http.ResponseWriter, r *http.Request) {
 
 // GET /api/auth/check
 func (a *App) handleAuthCheck(w http.ResponseWriter, r *http.Request) {
-	a.jsonOK(w, map[string]interface{}{
-		"needs_setup":          a.db.UserCount() == 0,
-		"mode":                 "single_admin",
-		"jwt_secret_ephemeral": jwtSecretEphemeral,
-	})
+	resp := map[string]interface{}{
+		"needs_setup": a.db.UserCount() == 0,
+		"mode":        "single_admin",
+	}
+	// Only surface the ephemeral-secret warning before the first admin is created.
+	// After that it's internal state, exposed solely via authenticated endpoints.
+	if a.db.UserCount() == 0 {
+		resp["jwt_secret_ephemeral"] = jwtSecretEphemeral
+	}
+	a.jsonOK(w, resp)
 }
-
 // GET /api/dashboard
 func (a *App) handleDashboard(w http.ResponseWriter, r *http.Request) {
 	stats := a.db.DashboardStats()
@@ -2221,7 +2300,6 @@ func (a *App) handleSSE(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/event-stream")
 	w.Header().Set("Cache-Control", "no-cache")
 	w.Header().Set("Connection", "keep-alive")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
 	flusher.Flush()
 
 	ticker := time.NewTicker(2 * time.Second)
@@ -2336,14 +2414,29 @@ func main() {
 		}
 	}()
 
-	app := &App{db: db, pm: pm}
+	app := &App{db: db, pm: pm, loginAttempts: map[string]*loginState{}}
 
 	mux := http.NewServeMux()
 
 	// CORS middleware wrapper
 	cors := func(h http.HandlerFunc) http.HandlerFunc {
 		return func(w http.ResponseWriter, r *http.Request) {
-			w.Header().Set("Access-Control-Allow-Origin", "*")
+			origin := r.Header.Get("Origin")
+			// Allow only same-origin requests (SPA served from this server).
+			// If a browser sends an Origin — e.g. cross-site fetch —, we echo
+			// only when it matches our own Host scheme+host. Without that,
+			// Authorization: Bearer would leak to any web origin.
+			if origin != "" {
+				host := r.Host
+				scheme := "http://"
+				if r.TLS != nil {
+					scheme = "https://"
+				}
+				if origin == scheme+host {
+					w.Header().Set("Access-Control-Allow-Origin", origin)
+					w.Header().Set("Vary", "Origin")
+				}
+			}
 			w.Header().Set("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS")
 			w.Header().Set("Access-Control-Allow-Headers", "Content-Type,Authorization")
 			if r.Method == "OPTIONS" {
