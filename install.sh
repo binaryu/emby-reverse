@@ -173,37 +173,35 @@ ensure_go() {
     bootstrap_go "$1"
 }
 
-# Rewrite go.mod language version to the running toolchain (major.minor).
-# Avoids: old tags with go 1.26.x + portable go1.25.x + GOTOOLCHAIN=local failures.
-pin_go_mod_to_toolchain() {
+# Adjust go.mod language line only when the active toolchain rejects the current form.
+# Same logic as build.sh: Go >=1.21 accepts 1.25.0; Go <1.21 needs 1.25 (two-component).
+pin_go_mod_if_needed() {
     local file="$1"
-    local majmin
     [ -f "$file" ] || return 0
-    majmin=$(go version 2>/dev/null | sed -n 's/.*go\([0-9][0-9]*\.[0-9][0-9]*\).*/\1/p' | head -1)
-    if [ -z "$majmin" ]; then
-        warn "无法解析当前 go 版本，跳过 go.mod 对齐"
+    # If the toolchain parses go.mod, nothing to do.
+    if ( cd "$(dirname "$file")" && GOTOOLCHAIN="${GOTOOLCHAIN:-local}" GOPROXY=off go list -mod=mod ./... ) >/dev/null 2>&1; then
         return 0
     fi
-    # Prefer two-component form for maximum parser compatibility.
-    if grep -qE '^go[[:space:]]+' "$file"; then
-        if sed -i.bak -E "s/^go[[:space:]]+[0-9]+(\\.[0-9]+){1,2}$/go ${majmin}/" "$file" 2>/dev/null \
-            || sed -i '' -E "s/^go[[:space:]]+[0-9]+(\\.[0-9]+){1,2}$/go ${majmin}/" "$file" 2>/dev/null; then
-            rm -f "${file}.bak"
-            info "已将 go.mod 语言版本对齐为: go ${majmin}"
-        else
-            # last-resort pure shell rewrite
-            local tmpf
-            tmpf=$(mktemp)
-            while IFS= read -r line || [ -n "$line" ]; do
-                case "$line" in
-                    go\ *) echo "go ${majmin}" ;;
-                    *) echo "$line" ;;
-                esac
-            done < "$file" > "$tmpf"
-            mv "$tmpf" "$file"
-            info "已将 go.mod 语言版本对齐为: go ${majmin}"
-        fi
+    local err
+    err=$( cd "$(dirname "$file")" && GOTOOLCHAIN="${GOTOOLCHAIN:-local}" GOPROXY=off go list -mod=mod ./... 2>&1 | head -5 || true )
+    if ! echo "$err" | grep -qE "invalid go version|must match format"; then
+        warn "go.mod 预检失败（非版本格式问题）："
+        printf '%s\n' "$err" | sed 's/^/  /' >&2
+        return 0
     fi
+    local majmin
+    majmin=$(go version 2>/dev/null | sed -n 's/.*go\([0-9][0-9]*\.[0-9][0-9]*\).*/\1/p' | head -1)
+    [ -n "$majmin" ] || majmin="1.25"
+    local tmpf
+    tmpf=$(mktemp)
+    while IFS= read -r line || [ -n "$line" ]; do
+        case "$line" in
+            go\ *) printf 'go %s\n' "$majmin" ;;
+            *) printf '%s\n' "$line" ;;
+        esac
+    done < "$file" > "$tmpf"
+    mv "$tmpf" "$file"
+    info "已将 go.mod 语言版本对齐为: go ${majmin}"
 }
 
 install_from_source() {
@@ -235,14 +233,17 @@ install_from_source() {
     fi
     info "源码 revision: ${src_sha}"
 
-    pin_go_mod_to_toolchain "$tmp/src/go.mod"
+    # Prefer the in-repo build.sh (handles go.mod pin, -mod=mod, versions).
+    pin_go_mod_if_needed "$tmp/src/go.mod"
 
     info "编译中 (go build)..."
     (
         cd "$tmp/src"
-        # auto: if go.mod still needs a newer toolchain, Go can fetch it.
         export GOTOOLCHAIN="${GOTOOLCHAIN:-auto}"
-        CGO_ENABLED=0 go build -ldflags="-s -w -X main.appVersion=${build_ver}" -o "/tmp/${BIN_NAME}" .
+        export GOPROXY="${GOPROXY:-https://proxy.golang.org,direct}"
+        CGO_ENABLED=0 go build -mod=mod -trimpath \
+            -ldflags="-s -w -X main.appVersion=${build_ver}" \
+            -o "/tmp/${BIN_NAME}" .
     ) || fail "源码编译失败。
 
 排查：
@@ -252,7 +253,6 @@ install_from_source() {
 仓库: https://github.com/${REPO}"
     chmod +x "/tmp/${BIN_NAME}"
     ok "源码编译完成 (${build_ver})"
-    # surface build label to caller via global used by place_binary if needed
     SOURCE_BUILD_VERSION="$build_ver"
 }
 

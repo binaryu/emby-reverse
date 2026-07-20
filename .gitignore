@@ -18,3 +18,8 @@ meridian.exe
 # OS
 .DS_Store
 Thumbs.db
+
+# portable Go SDK downloaded by build.sh / install.sh
+.go-sdk/
+meridian-linux-*
+*.db-*

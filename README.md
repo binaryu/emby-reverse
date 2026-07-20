@@ -93,11 +93,17 @@ $env:JWT_SECRET = -join ((1..32) | ForEach-Object { '{0:x2}' -f (Get-Random -Max
 
 ### 从源码构建
 
+Debian / 旧系统自带的 Go（如 1.19）**不能**直接 `go build` 本项目。请用仓库自带的 `build.sh`（会在需要时自动下载便携 Go 1.25.x，不污染系统）：
+
 ```bash
 git clone https://github.com/binaryu/emby-reverse.git && cd emby-reverse
-go build -o meridian .
+./build.sh
 JWT_SECRET=$(openssl rand -hex 32) ./meridian
 ```
+
+> `build.sh` 会把 `go.mod` 里的语言版本写成两位形式 `go 1.25`（避免 `1.25.0` 被 Go < 1.21 直接判非法），并用 `CGO_ENABLED=0` 产出静态二进制。
+>
+> 若本机已是 Go ≥ 1.25，也可以：`CGO_ENABLED=0 go build -o meridian .`
 
 部署完成后访问 `http://你的IP:9090`，首次打开会引导设置管理员密码。
 

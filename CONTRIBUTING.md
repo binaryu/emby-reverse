@@ -4,16 +4,17 @@
 
 ## 开发环境
 
-- Go 1.25+（推荐官方发行版；`go.mod` 为 `go 1.25.0`。Go < 1.21 请用安装脚本的便携工具链，或自行升级）
+- Go 1.25+（推荐官方 https://go.dev/dl/）。Debian 自带的 1.19 等旧版本请用 `./build.sh`，不要直接 `go build`。
+- `go.mod` 使用两位版本号：`go 1.25`（不要写成 `1.25.0` / `1.26.1`，旧工具链会报 `must match format 1.23`）
 - 无 CGO 依赖（SQLite 使用纯 Go 实现 `modernc.org/sqlite`）
 
 ```bash
 git clone https://github.com/binaryu/emby-reverse.git
 cd emby-reverse
-go build -o meridian .
-go test ./...
+./build.sh                 # 兼容旧系统 Go
+# 或：go build -o meridian .   # 仅当本机 Go ≥ 1.25
+JWT_SECRET=$(openssl rand -hex 32) ./meridian
 ```
-
 ## 项目架构约定
 
 - **后端保持单文件**：所有后端逻辑写在 `main.go` 中，不拆分子包或多文件。这是项目的有意设计选择
