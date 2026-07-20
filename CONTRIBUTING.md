@@ -4,7 +4,7 @@
 
 ## 开发环境
 
-- Go 1.26+
+- Go 1.25+（推荐官方发行版；`go.mod` 为 `go 1.25.0`。Go < 1.21 请用安装脚本的便携工具链，或自行升级）
 - 无 CGO 依赖（SQLite 使用纯 Go 实现 `modernc.org/sqlite`）
 
 ```bash

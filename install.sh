@@ -11,6 +11,11 @@ DATA_DIR="/opt/meridian"
 SERVICE_FILE="/etc/systemd/system/meridian.service"
 BIN_NAME="meridian"
 CLONE_URL="https://github.com/${REPO}.git"
+# Module requires go 1.25+ (two-component form for older parsers). Bootstrap uses this exact SDK.
+GO_BOOTSTRAP_VERSION="1.25.3"
+
+export GOTOOLCHAIN="${GOTOOLCHAIN:-auto}"
+export GOPROXY="${GOPROXY:-https://proxy.golang.org,direct}"
 
 # ─── Colors ───
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[0;33m'; CYAN='\033[0;36m'; BOLD='\033[1m'; NC='\033[0m'
@@ -95,19 +100,81 @@ download_binary() {
     return 0
 }
 
+go_version_tuple() {
+    # prints "major minor" from `go version` output, e.g. "1 25"
+    local ver
+    ver=$(go version 2>/dev/null | sed -n 's/.*go\([0-9][0-9]*\)\.\([0-9][0-9]*\).*/\1 \2/p' | head -1)
+    if [ -z "$ver" ]; then
+        return 1
+    fi
+    echo "$ver"
+}
+
+go_can_build_module() {
+    # True if current go accepts a two-component go 1.25 line and is >= 1.21 (toolchain auto) or >= 1.25.
+    command -v go >/dev/null 2>&1 || return 1
+    local major minor
+    read -r major minor <<EOF
+$(go_version_tuple || true)
+EOF
+    [ -n "${major:-}" ] && [ -n "${minor:-}" ] || return 1
+    # Go < 1.21 cannot download toolchains and rejects many modern go.mod forms.
+    if [ "$major" -lt 1 ] || { [ "$major" -eq 1 ] && [ "$minor" -lt 21 ]; }; then
+        return 1
+    fi
+    # Prefer system go if already new enough to satisfy go 1.25 without download.
+    if [ "$major" -gt 1 ] || { [ "$major" -eq 1 ] && [ "$minor" -ge 25 ]; }; then
+        return 0
+    fi
+    # 1.21–1.24: rely on GOTOOLCHAIN=auto (needs network the first time).
+    return 0
+}
+
+bootstrap_go() {
+    # Download a portable Go SDK into $1/go and prepend to PATH.
+    local dest="$1"
+    local os arch tarball url
+    os=$(uname -s | tr '[:upper:]' '[:lower:]')
+    arch=$(uname -m)
+    case "$arch" in
+        x86_64|amd64) arch="amd64" ;;
+        aarch64|arm64) arch="arm64" ;;
+        *) fail "无法为架构 $arch 下载便携 Go" ;;
+    esac
+    case "$os" in
+        linux|darwin) ;;
+        *) fail "无法为系统 $os 下载便携 Go" ;;
+    esac
+
+    tarball="go${GO_BOOTSTRAP_VERSION}.${os}-${arch}.tar.gz"
+    url="https://go.dev/dl/${tarball}"
+    info "本机 Go 过旧或不可用，下载便携工具链 ${GO_BOOTSTRAP_VERSION} ..."
+    info "来源: $url"
+    curl -fSL "$url" -o "$dest/${tarball}" || fail "下载 Go 失败。请手动安装 Go >= 1.25：https://go.dev/dl/"
+    tar -C "$dest" -xzf "$dest/${tarball}" || fail "解压 Go 失败"
+    export PATH="$dest/go/bin:$PATH"
+    export GOROOT="$dest/go"
+    export GOTOOLCHAIN=local
+    ok "便携 Go 就绪: $(go version)"
+}
+
+ensure_go() {
+    if go_can_build_module; then
+        ok "使用本机 Go: $(go version | awk '{print $3}')"
+        export GOTOOLCHAIN="${GOTOOLCHAIN:-auto}"
+        return 0
+    fi
+    if command -v go >/dev/null 2>&1; then
+        warn "本机 $(go version 2>/dev/null || echo 'go') 无法可靠编译本项目（需要 Go >= 1.25，或 1.21+ 并允许自动下载工具链）"
+    else
+        warn "未检测到 go 命令"
+    fi
+    bootstrap_go "$1"
+}
+
 install_from_source() {
     local version="${1:-dev}"
     local tmp
-
-    if ! command -v go >/dev/null 2>&1; then
-        fail "当前仓库没有可用的 Release 二进制，且本机未安装 Go，无法源码安装。
-
-请任选其一：
-  1) 在 GitHub 打 tag 触发 Release 工作流：git tag v1.x.x && git push origin v1.x.x
-  2) 安装 Go 后重新运行本脚本（将自动从源码编译）
-  3) 手动: git clone ${CLONE_URL} && cd emby-reverse && go build -o meridian .
-仓库: https://github.com/${REPO}"
-    fi
 
     if ! command -v git >/dev/null 2>&1; then
         fail "源码安装需要 git，请先安装 git 后重试。"
@@ -118,6 +185,8 @@ install_from_source() {
     # shellcheck disable=SC2064
     trap "rm -rf '$tmp'" RETURN
 
+    ensure_go "$tmp"
+
     info "克隆 ${CLONE_URL} ..."
     if [ -n "${version}" ] && [ "${version}" != "dev" ]; then
         git clone --depth 1 --branch "$version" "$CLONE_URL" "$tmp/src" 2>/dev/null \
@@ -126,11 +195,20 @@ install_from_source() {
         git clone --depth 1 "$CLONE_URL" "$tmp/src"
     fi
 
+    # Guard against patch-style go lines that break older module parsers mid-build.
+    if [ -f "$tmp/src/go.mod" ]; then
+        sed -i.bak -E 's/^go 1\.([0-9]+)\.[0-9]+$/go 1.\1/' "$tmp/src/go.mod" 2>/dev/null \
+            || sed -i '' -E 's/^go 1\.([0-9]+)\.[0-9]+$/go 1.\1/' "$tmp/src/go.mod" 2>/dev/null \
+            || true
+        rm -f "$tmp/src/go.mod.bak"
+    fi
+
     info "编译中 (go build)..."
     (
         cd "$tmp/src"
         CGO_ENABLED=0 go build -ldflags="-s -w -X main.appVersion=${version}" -o "/tmp/${BIN_NAME}" .
-    ) || fail "源码编译失败"
+    ) || fail "源码编译失败。可尝试: 安装/升级 Go 到 1.25+ 后重试，或发布 GitHub Release 后走二进制安装。
+仓库: https://github.com/${REPO}"
     chmod +x "/tmp/${BIN_NAME}"
     ok "源码编译完成"
 }
