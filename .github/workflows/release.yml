@@ -94,7 +94,7 @@ jobs:
       packages: write
       contents: read
     env:
-      IMAGE_NAME: ghcr.io/snnabb/meridian
+      IMAGE_NAME: ghcr.io/binaryu/emby-reverse
 
     steps:
       - uses: actions/checkout@v5
