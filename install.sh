@@ -154,7 +154,8 @@ bootstrap_go() {
     tar -C "$dest" -xzf "$dest/${tarball}" || fail "解压 Go 失败"
     export PATH="$dest/go/bin:$PATH"
     export GOROOT="$dest/go"
-    export GOTOOLCHAIN=local
+    # Keep auto so a still-too-new go.mod can pull a matching toolchain if needed.
+    export GOTOOLCHAIN="${GOTOOLCHAIN:-auto}"
     ok "便携 Go 就绪: $(go version)"
 }
 
@@ -172,9 +173,42 @@ ensure_go() {
     bootstrap_go "$1"
 }
 
+# Rewrite go.mod language version to the running toolchain (major.minor).
+# Avoids: old tags with go 1.26.x + portable go1.25.x + GOTOOLCHAIN=local failures.
+pin_go_mod_to_toolchain() {
+    local file="$1"
+    local majmin
+    [ -f "$file" ] || return 0
+    majmin=$(go version 2>/dev/null | sed -n 's/.*go\([0-9][0-9]*\.[0-9][0-9]*\).*/\1/p' | head -1)
+    if [ -z "$majmin" ]; then
+        warn "无法解析当前 go 版本，跳过 go.mod 对齐"
+        return 0
+    fi
+    # Prefer two-component form for maximum parser compatibility.
+    if grep -qE '^go[[:space:]]+' "$file"; then
+        if sed -i.bak -E "s/^go[[:space:]]+[0-9]+(\\.[0-9]+){1,2}$/go ${majmin}/" "$file" 2>/dev/null \
+            || sed -i '' -E "s/^go[[:space:]]+[0-9]+(\\.[0-9]+){1,2}$/go ${majmin}/" "$file" 2>/dev/null; then
+            rm -f "${file}.bak"
+            info "已将 go.mod 语言版本对齐为: go ${majmin}"
+        else
+            # last-resort pure shell rewrite
+            local tmpf
+            tmpf=$(mktemp)
+            while IFS= read -r line || [ -n "$line" ]; do
+                case "$line" in
+                    go\ *) echo "go ${majmin}" ;;
+                    *) echo "$line" ;;
+                esac
+            done < "$file" > "$tmpf"
+            mv "$tmpf" "$file"
+            info "已将 go.mod 语言版本对齐为: go ${majmin}"
+        fi
+    fi
+}
+
 install_from_source() {
     local version="${1:-dev}"
-    local tmp
+    local tmp src_sha build_ver
 
     if ! command -v git >/dev/null 2>&1; then
         fail "源码安装需要 git，请先安装 git 后重试。"
@@ -187,30 +221,39 @@ install_from_source() {
 
     ensure_go "$tmp"
 
-    info "克隆 ${CLONE_URL} ..."
-    if [ -n "${version}" ] && [ "${version}" != "dev" ]; then
-        git clone --depth 1 --branch "$version" "$CLONE_URL" "$tmp/src" 2>/dev/null \
-            || git clone --depth 1 "$CLONE_URL" "$tmp/src"
-    else
-        git clone --depth 1 "$CLONE_URL" "$tmp/src"
-    fi
+    # Always clone the default branch for source fallback.
+    # Tag names from the API (e.g. v1.4.1) often predate go.mod fixes / fork features
+    # and still have no release binaries — building that tag is the wrong tree.
+    info "克隆 ${CLONE_URL} (默认分支) ..."
+    git clone --depth 1 "$CLONE_URL" "$tmp/src" || fail "克隆仓库失败: ${CLONE_URL}"
 
-    # Guard against patch-style go lines that break older module parsers mid-build.
-    if [ -f "$tmp/src/go.mod" ]; then
-        sed -i.bak -E 's/^go 1\.([0-9]+)\.[0-9]+$/go 1.\1/' "$tmp/src/go.mod" 2>/dev/null \
-            || sed -i '' -E 's/^go 1\.([0-9]+)\.[0-9]+$/go 1.\1/' "$tmp/src/go.mod" 2>/dev/null \
-            || true
-        rm -f "$tmp/src/go.mod.bak"
+    src_sha=$(git -C "$tmp/src" rev-parse --short HEAD 2>/dev/null || echo unknown)
+    if [ "$version" = "dev" ] || [ -z "$version" ]; then
+        build_ver="source-${src_sha}"
+    else
+        build_ver="${version}-source-${src_sha}"
     fi
+    info "源码 revision: ${src_sha}"
+
+    pin_go_mod_to_toolchain "$tmp/src/go.mod"
 
     info "编译中 (go build)..."
     (
         cd "$tmp/src"
-        CGO_ENABLED=0 go build -ldflags="-s -w -X main.appVersion=${version}" -o "/tmp/${BIN_NAME}" .
-    ) || fail "源码编译失败。可尝试: 安装/升级 Go 到 1.25+ 后重试，或发布 GitHub Release 后走二进制安装。
+        # auto: if go.mod still needs a newer toolchain, Go can fetch it.
+        export GOTOOLCHAIN="${GOTOOLCHAIN:-auto}"
+        CGO_ENABLED=0 go build -ldflags="-s -w -X main.appVersion=${build_ver}" -o "/tmp/${BIN_NAME}" .
+    ) || fail "源码编译失败。
+
+排查：
+  1) 确认可访问 https://go.dev/dl/ 与 proxy.golang.org
+  2) 或本机安装 Go >= 1.25 后重试
+  3) 或在 GitHub 打 tag 发布 Release 后走二进制安装
 仓库: https://github.com/${REPO}"
     chmod +x "/tmp/${BIN_NAME}"
-    ok "源码编译完成"
+    ok "源码编译完成 (${build_ver})"
+    # surface build label to caller via global used by place_binary if needed
+    SOURCE_BUILD_VERSION="$build_ver"
 }
 
 place_binary_and_service() {
@@ -323,8 +366,9 @@ do_install() {
         fi
     fi
 
+    SOURCE_BUILD_VERSION=""
     install_from_source "$version"
-    place_binary_and_service "$version"
+    place_binary_and_service "${SOURCE_BUILD_VERSION:-$version}"
 }
 
 # ─── Uninstall ───
