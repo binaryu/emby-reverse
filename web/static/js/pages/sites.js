@@ -173,46 +173,61 @@ function showSiteModal(site) {
       </select>
       <div class="form-help">直连分流：播放请求直接发送到首个播放回源（适合完整 Emby 实例）。重定向跟随：所有请求经主回源，自动跟随重定向到任一播放回源（适合多节点 CDN）。</div>
     </div>
-    <div class="form-group">
-      <label>监听端口</label>
-      <input type="number" class="form-input" id="m-port" value="${isEdit ? site.listen_port : ''}" placeholder="如：8001" required>
+    <div class="form-row">
+      <div class="form-group">
+        <label>监听端口</label>
+        <input type="number" class="form-input" id="m-port" value="${isEdit ? site.listen_port : ''}" placeholder="如：8001" required>
+      </div>
+      <div class="form-group">
+        <label>UA 模式</label>
+        <select class="form-select modal-select" id="m-ua">
+          <option value="infuse" ${(!isEdit || site.ua_mode === 'infuse') ? 'selected' : ''}>Infuse</option>
+          <option value="web" ${isEdit && site.ua_mode === 'web' ? 'selected' : ''}>Web</option>
+          <option value="client" ${isEdit && site.ua_mode === 'client' ? 'selected' : ''}>客户端</option>
+        </select>
+      </div>
     </div>
-    <div class="form-group">
-      <label>UA 模式</label>
-      <select class="form-select modal-select" id="m-ua">
-        <option value="infuse" ${(!isEdit || site.ua_mode === 'infuse') ? 'selected' : ''}>Infuse</option>
-        <option value="web" ${isEdit && site.ua_mode === 'web' ? 'selected' : ''}>Web</option>
-        <option value="client" ${isEdit && site.ua_mode === 'client' ? 'selected' : ''}>客户端</option>
-      </select>
+    <div class="form-row">
+      <div class="form-group">
+        <label>流量额度 (GB, 0=不限)</label>
+        <input type="number" class="form-input" id="m-quota" value="${isEdit ? Math.round((site.traffic_quota || 0) / 1073741824) : 0}" placeholder="0">
+      </div>
+      <div class="form-group" style="flex:0 0 40%">
+        <label>&nbsp;</label>
+        <div class="form-help" style="margin-top:0">设为 0 表示不限速/不限额。</div>
+      </div>
     </div>
-    <div class="form-group">
-      <label>流量额度 (GB, 0=不限)</label>
-      <input type="number" class="form-input" id="m-quota" value="${isEdit ? Math.round((site.traffic_quota || 0) / 1073741824) : 0}" placeholder="0">
-    </div>
-    <div class="form-group">
-      <label>EMOS-PROXY-ID（可选）</label>
-      <input type="text" class="form-input" id="m-proxy-id" value="${isEdit ? esc(site.proxy_id || '') : ''}" placeholder="如：eABCDEFGHs">
-      <div class="form-help">反代到 EMOS 等要求身份头的上游时填写，会原样注入请求头 EMOS-PROXY-ID。</div>
-    </div>
-    <div class="form-group">
-      <label>EMOS-PROXY-NAME（可选）</label>
-      <input type="text" class="form-input" id="m-proxy-name" value="${isEdit ? esc(site.proxy_name || '') : ''}" placeholder="如：@emos">
-      <div class="form-help">会注入请求头 EMOS-PROXY-NAME。X-Forwarded-For 始终自动传递客户端 IP。</div>
-    </div>
-    <div class="form-group">
-      <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
-        <input type="checkbox" id="m-cache-static" ${(!isEdit || site.cache_static) ? 'checked' : ''}>
-        缓存图片与 System/Ping
-      </label>
-      <div class="form-help">缓存 /Items/*/Images/* 与 /System/Ping（含 /emby 前缀），降低上游压力。Range 视频流不会被缓存。</div>
-    </div>
-    <div class="form-group">
-      <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
-        <input type="checkbox" id="m-throttle-progress" ${(!isEdit || site.throttle_progress) ? 'checked' : ''}>
-        节流 Playing/Progress
-      </label>
-      <div class="form-help">对 /Sessions/Playing/Progress 限频（约 10 秒一次），多余上报直接 204。</div>
-    </div>
+    <fieldset class="fieldset-tight">
+      <legend>EMOS 身份头（可选）</legend>
+      <div class="form-row">
+        <div class="form-group" style="margin-bottom:8px">
+          <label>EMOS-PROXY-ID</label>
+          <input type="text" class="form-input" id="m-proxy-id" value="${isEdit ? esc(site.proxy_id || '') : ''}" placeholder="如：eABCDEFGHs">
+        </div>
+        <div class="form-group" style="margin-bottom:8px">
+          <label>EMOS-PROXY-NAME</label>
+          <input type="text" class="form-input" id="m-proxy-name" value="${isEdit ? esc(site.proxy_name || '') : ''}" placeholder="如：@emos">
+        </div>
+      </div>
+      <div class="form-help" style="margin:0">反代到 EMOS 等要求身份头的上游时填写；会原样注入请求头 EMOS-PROXY-ID / EMOS-PROXY-NAME。X-Forwarded-For 始终自动传递客户端 IP。</div>
+    </fieldset>
+    <fieldset class="fieldset-tight">
+      <legend>缓存与节流</legend>
+      <div class="form-group" style="margin-bottom:8px">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+          <input type="checkbox" id="m-cache-static" ${(!isEdit || site.cache_static) ? 'checked' : ''}>
+          缓存图片与 System/Ping
+        </label>
+        <div class="form-help" style="margin-top:4px">缓存 /Items/*/Images/* 与 /System/Ping（含 /emby 前缀）。Range 视频不缓存。</div>
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+          <input type="checkbox" id="m-throttle-progress" ${(!isEdit || site.throttle_progress) ? 'checked' : ''}>
+          节流 Playing/Progress
+        </label>
+        <div class="form-help" style="margin-top:4px">对 /Sessions/Playing/Progress 限频（约 10 秒一次），多余上报直接 204。</div>
+      </div>
+    </fieldset>
   `;
 
   document.getElementById('modal-footer').innerHTML = `
