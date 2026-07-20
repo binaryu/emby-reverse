@@ -252,6 +252,24 @@ func (d *DB) migrate() error {
 		}
 	}
 
+	// redirect_allowlist: hosts whose 30x redirects Meridian follows server-side
+	// (pulling CDN direct links back through the proxy). Hosts not on this list
+	// pass 30x through to the client untouched (e.g. domestic cloud drives that
+	// are fast enough for the client to hit directly). On upgrade we seed it from
+	// the legacy stream_hosts column so existing redirect-mode sites keep working.
+	var hasRedirectAllowlistColumn int
+	if err := d.db.QueryRow("SELECT COUNT(*) FROM pragma_table_info('sites') WHERE name='redirect_allowlist'").Scan(&hasRedirectAllowlistColumn); err != nil {
+		return err
+	}
+	if hasRedirectAllowlistColumn == 0 {
+		if _, err := d.db.Exec("ALTER TABLE sites ADD COLUMN redirect_allowlist TEXT NOT NULL DEFAULT '[]'"); err != nil {
+			return err
+		}
+		if _, err := d.db.Exec("UPDATE sites SET redirect_allowlist = stream_hosts"); err != nil {
+			return err
+		}
+	}
+
 	for _, col := range []struct {
 		name string
 		def  string
@@ -330,6 +348,7 @@ type Site struct {
 	PlaybackTargetURL string `json:"playback_target_url"`
 	PlaybackMode      string `json:"playback_mode"`
 	StreamHosts       string `json:"stream_hosts"`
+	RedirectAllowlist string `json:"redirect_allowlist"`
 	UAMode            string `json:"ua_mode"`
 	Enabled           bool   `json:"enabled"`
 	TrafficQuota      int64  `json:"traffic_quota"`
@@ -384,7 +403,7 @@ func (d *DB) VerifyUser(username, password string) (int64, error) {
 }
 
 func (d *DB) ListSites() ([]Site, error) {
-	rows, err := d.db.Query("SELECT id, name, listen_port, target_url, playback_target_url, playback_mode, stream_hosts, ua_mode, enabled, traffic_quota, traffic_used, speed_limit, proxy_id, proxy_name, cache_static, throttle_progress, created_at, updated_at FROM sites ORDER BY id")
+	rows, err := d.db.Query("SELECT id, name, listen_port, target_url, playback_target_url, playback_mode, stream_hosts, redirect_allowlist, ua_mode, enabled, traffic_quota, traffic_used, speed_limit, proxy_id, proxy_name, cache_static, throttle_progress, created_at, updated_at FROM sites ORDER BY id")
 	if err != nil {
 		return nil, err
 	}
@@ -394,7 +413,7 @@ func (d *DB) ListSites() ([]Site, error) {
 		var s Site
 		var enabled int
 		var cacheStatic, throttleProgress int
-		rows.Scan(&s.ID, &s.Name, &s.ListenPort, &s.TargetURL, &s.PlaybackTargetURL, &s.PlaybackMode, &s.StreamHosts, &s.UAMode, &enabled, &s.TrafficQuota, &s.TrafficUsed, &s.SpeedLimit, &s.ProxyID, &s.ProxyName, &cacheStatic, &throttleProgress, &s.CreatedAt, &s.UpdatedAt)
+		rows.Scan(&s.ID, &s.Name, &s.ListenPort, &s.TargetURL, &s.PlaybackTargetURL, &s.PlaybackMode, &s.StreamHosts, &s.RedirectAllowlist, &s.UAMode, &enabled, &s.TrafficQuota, &s.TrafficUsed, &s.SpeedLimit, &s.ProxyID, &s.ProxyName, &cacheStatic, &throttleProgress, &s.CreatedAt, &s.UpdatedAt)
 		s.Enabled = enabled == 1
 		s.CacheStatic = cacheStatic == 1
 		s.ThrottleProgress = throttleProgress == 1
@@ -410,8 +429,8 @@ func (d *DB) GetSite(id int64) (*Site, error) {
 	var s Site
 	var enabled int
 	var cacheStatic, throttleProgress int
-	err := d.db.QueryRow("SELECT id, name, listen_port, target_url, playback_target_url, playback_mode, stream_hosts, ua_mode, enabled, traffic_quota, traffic_used, speed_limit, proxy_id, proxy_name, cache_static, throttle_progress, created_at, updated_at FROM sites WHERE id=?", id).
-		Scan(&s.ID, &s.Name, &s.ListenPort, &s.TargetURL, &s.PlaybackTargetURL, &s.PlaybackMode, &s.StreamHosts, &s.UAMode, &enabled, &s.TrafficQuota, &s.TrafficUsed, &s.SpeedLimit, &s.ProxyID, &s.ProxyName, &cacheStatic, &throttleProgress, &s.CreatedAt, &s.UpdatedAt)
+	err := d.db.QueryRow("SELECT id, name, listen_port, target_url, playback_target_url, playback_mode, stream_hosts, redirect_allowlist, ua_mode, enabled, traffic_quota, traffic_used, speed_limit, proxy_id, proxy_name, cache_static, throttle_progress, created_at, updated_at FROM sites WHERE id=?", id).
+		Scan(&s.ID, &s.Name, &s.ListenPort, &s.TargetURL, &s.PlaybackTargetURL, &s.PlaybackMode, &s.StreamHosts, &s.RedirectAllowlist, &s.UAMode, &enabled, &s.TrafficQuota, &s.TrafficUsed, &s.SpeedLimit, &s.ProxyID, &s.ProxyName, &cacheStatic, &throttleProgress, &s.CreatedAt, &s.UpdatedAt)
 	if err != nil {
 		return nil, err
 	}
@@ -421,9 +440,12 @@ func (d *DB) GetSite(id int64) (*Site, error) {
 	return &s, nil
 }
 
-func (d *DB) CreateSite(name string, port int, targetURL, playbackTargetURL, playbackMode, streamHosts, uaMode string, quota int64, speedLimit int, proxyID, proxyName string, cacheStatic, throttleProgress bool) (*Site, error) {
+func (d *DB) CreateSite(name string, port int, targetURL, playbackTargetURL, playbackMode, streamHosts, redirectAllowlist, uaMode string, quota int64, speedLimit int, proxyID, proxyName string, cacheStatic, throttleProgress bool) (*Site, error) {
 	if streamHosts == "" {
 		streamHosts = "[]"
+	}
+	if redirectAllowlist == "" {
+		redirectAllowlist = "[]"
 	}
 	cs, tp := 0, 0
 	if cacheStatic {
@@ -433,8 +455,8 @@ func (d *DB) CreateSite(name string, port int, targetURL, playbackTargetURL, pla
 		tp = 1
 	}
 	res, err := d.db.Exec(
-		"INSERT INTO sites (name, listen_port, target_url, playback_target_url, playback_mode, stream_hosts, ua_mode, traffic_quota, speed_limit, proxy_id, proxy_name, cache_static, throttle_progress) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-		name, port, targetURL, playbackTargetURL, playbackMode, streamHosts, uaMode, quota, speedLimit, proxyID, proxyName, cs, tp,
+		"INSERT INTO sites (name, listen_port, target_url, playback_target_url, playback_mode, stream_hosts, redirect_allowlist, ua_mode, traffic_quota, speed_limit, proxy_id, proxy_name, cache_static, throttle_progress) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+		name, port, targetURL, playbackTargetURL, playbackMode, streamHosts, redirectAllowlist, uaMode, quota, speedLimit, proxyID, proxyName, cs, tp,
 	)
 	if err != nil {
 		return nil, err
@@ -443,9 +465,12 @@ func (d *DB) CreateSite(name string, port int, targetURL, playbackTargetURL, pla
 	return d.GetSite(id)
 }
 
-func (d *DB) UpdateSite(id int64, name string, port int, targetURL, playbackTargetURL, playbackMode, streamHosts, uaMode string, quota int64, speedLimit int, proxyID, proxyName string, cacheStatic, throttleProgress bool) error {
+func (d *DB) UpdateSite(id int64, name string, port int, targetURL, playbackTargetURL, playbackMode, streamHosts, redirectAllowlist, uaMode string, quota int64, speedLimit int, proxyID, proxyName string, cacheStatic, throttleProgress bool) error {
 	if streamHosts == "" {
 		streamHosts = "[]"
+	}
+	if redirectAllowlist == "" {
+		redirectAllowlist = "[]"
 	}
 	cs, tp := 0, 0
 	if cacheStatic {
@@ -455,8 +480,8 @@ func (d *DB) UpdateSite(id int64, name string, port int, targetURL, playbackTarg
 		tp = 1
 	}
 	_, err := d.db.Exec(
-		"UPDATE sites SET name=?, listen_port=?, target_url=?, playback_target_url=?, playback_mode=?, stream_hosts=?, ua_mode=?, traffic_quota=?, speed_limit=?, proxy_id=?, proxy_name=?, cache_static=?, throttle_progress=?, updated_at=CURRENT_TIMESTAMP WHERE id=?",
-		name, port, targetURL, playbackTargetURL, playbackMode, streamHosts, uaMode, quota, speedLimit, proxyID, proxyName, cs, tp, id,
+		"UPDATE sites SET name=?, listen_port=?, target_url=?, playback_target_url=?, playback_mode=?, stream_hosts=?, redirect_allowlist=?, ua_mode=?, traffic_quota=?, speed_limit=?, proxy_id=?, proxy_name=?, cache_static=?, throttle_progress=?, updated_at=CURRENT_TIMESTAMP WHERE id=?",
+		name, port, targetURL, playbackTargetURL, playbackMode, streamHosts, redirectAllowlist, uaMode, quota, speedLimit, proxyID, proxyName, cs, tp, id,
 	)
 	return err
 }
@@ -547,11 +572,86 @@ func (d *DB) DashboardStats() map[string]interface{} {
 }
 
 // Proxy Engine
+
+// normalizeHostPattern turns user input into a comparable host pattern.
+// Accepts bare hosts, optional ports, full URLs, and wildcards like *.cmecloud.cn.
+func normalizeHostPattern(raw string) string {
+	raw = strings.TrimSpace(strings.ToLower(raw))
+	if raw == "" {
+		return ""
+	}
+	if strings.Contains(raw, "://") {
+		if u, err := url.Parse(raw); err == nil && u.Host != "" {
+			raw = strings.ToLower(u.Host)
+		}
+	}
+	if i := strings.IndexAny(raw, "/?"); i >= 0 {
+		raw = raw[:i]
+	}
+	// Keep leading "*." for wildcards; only strip port on concrete hosts.
+	if strings.HasPrefix(raw, "*.") {
+		return raw
+	}
+	if h, _, err := net.SplitHostPort(raw); err == nil {
+		return h
+	}
+	return raw
+}
+
+// hostMatchesAllowlist reports whether host is covered by any allowlist entry.
+// Exact: "onedrive.live.com". Wildcard: "*.cmecloud.cn" matches the apex and any subdomain.
+func hostMatchesAllowlist(host string, patterns []string) bool {
+	host = strings.ToLower(strings.TrimSpace(host))
+	if h, _, err := net.SplitHostPort(host); err == nil {
+		host = h
+	}
+	if host == "" {
+		return false
+	}
+	for _, raw := range patterns {
+		p := normalizeHostPattern(raw)
+		if p == "" {
+			continue
+		}
+		if strings.HasPrefix(p, "*.") {
+			base := p[2:]
+			if base == "" {
+				continue
+			}
+			if host == base || strings.HasSuffix(host, "."+base) {
+				return true
+			}
+			continue
+		}
+		if host == p {
+			return true
+		}
+	}
+	return false
+}
+
+func parseRedirectAllowlist(raw string) []string {
+	if raw == "" || raw == "[]" {
+		return nil
+	}
+	var items []string
+	if err := json.Unmarshal([]byte(raw), &items); err != nil {
+		return nil
+	}
+	out := make([]string, 0, len(items))
+	for _, it := range items {
+		if n := normalizeHostPattern(it); n != "" {
+			out = append(out, n)
+		}
+	}
+	return out
+}
+
 type redirectFollowTransport struct {
-	base          http.RoundTripper
-	playbackHosts map[string]bool
-	profile       UAProfile
-	site          Site
+	base      http.RoundTripper
+	allowlist []string
+	profile   UAProfile
+	site      Site
 }
 
 func (t *redirectFollowTransport) RoundTrip(req *http.Request) (*http.Response, error) {
@@ -559,7 +659,7 @@ func (t *redirectFollowTransport) RoundTrip(req *http.Request) (*http.Response, 
 	if err != nil {
 		return nil, err
 	}
-	for i := 0; i < 3; i++ {
+	for range 3 {
 		if resp.StatusCode != 301 && resp.StatusCode != 302 && resp.StatusCode != 307 && resp.StatusCode != 308 {
 			break
 		}
@@ -574,7 +674,9 @@ func (t *redirectFollowTransport) RoundTrip(req *http.Request) (*http.Response, 
 		if locURL.Host == "" {
 			locURL = req.URL.ResolveReference(locURL)
 		}
-		if !t.playbackHosts[strings.ToLower(locURL.Host)] {
+		// Only follow redirects into the user-configured allowlist.
+		// Non-matching CDNs (e.g. domestic cloud drives) pass through to the client.
+		if !hostMatchesAllowlist(locURL.Host, t.allowlist) {
 			break
 		}
 		resp.Body.Close()
@@ -1125,7 +1227,14 @@ func (pm *ProxyManager) StartSite(site Site) error {
 	inst := &ProxyInstance{Site: site}
 	inst.persistedTraffic.Store(site.TrafficUsed)
 
+	// redirect mode: all requests first go to the primary target.
+	// direct mode : requests route by path (main vs playback target).
+	// Both modes attach redirectFollowTransport when redirect_allowlist is set:
+	// 30x Locations matching the allowlist are followed server-side (CDN pulled
+	// through the proxy); non-matching Locations pass through to the client
+	// (e.g. domestic cloud drives that should stay direct).
 	isRedirectMode := playbackTarget != nil && site.PlaybackMode == "redirect"
+	redirectAllowlist := parseRedirectAllowlist(site.RedirectAllowlist)
 
 	proxy := &httputil.ReverseProxy{
 		// Flush streaming media (including HTTP 206 partial content) promptly.
@@ -1157,12 +1266,12 @@ func (pm *ProxyManager) StartSite(site Site) error {
 		},
 	}
 
-	if isRedirectMode {
+	if len(redirectAllowlist) > 0 {
 		proxy.Transport = &redirectFollowTransport{
-			base:          http.DefaultTransport,
-			playbackHosts: playbackHostsSet,
-			profile:       profile,
-			site:          site,
+			base:      http.DefaultTransport,
+			allowlist: redirectAllowlist,
+			profile:   profile,
+			site:      site,
 		}
 	}
 
@@ -1280,12 +1389,13 @@ func (pm *ProxyManager) StartSite(site Site) error {
 	pm.mu.Unlock()
 
 	go func() {
-		if len(playbackHostsSet) > 0 {
+		if len(playbackHostsSet) > 0 || len(redirectAllowlist) > 0 {
 			hosts := make([]string, 0, len(playbackHostsSet))
 			for h := range playbackHostsSet {
 				hosts = append(hosts, h)
 			}
-			log.Printf("[%s] proxy :%d -> %s (playback hosts: %s, mode: %s, UA: %s)", site.Name, site.ListenPort, site.TargetURL, strings.Join(hosts, ", "), site.PlaybackMode, site.UAMode)
+			log.Printf("[%s] proxy :%d -> %s (playback hosts: %s, mode: %s, redirect allowlist: %s, UA: %s)",
+				site.Name, site.ListenPort, site.TargetURL, strings.Join(hosts, ", "), site.PlaybackMode, strings.Join(redirectAllowlist, ", "), site.UAMode)
 		} else {
 			log.Printf("[%s] proxy :%d -> %s (UA: %s)", site.Name, site.ListenPort, site.TargetURL, site.UAMode)
 		}
@@ -2039,6 +2149,7 @@ func (a *App) handleSites(w http.ResponseWriter, r *http.Request) {
 			PlaybackTargetURL string   `json:"playback_target_url"`
 			PlaybackMode      string   `json:"playback_mode"`
 			StreamHosts       []string `json:"stream_hosts"`
+			RedirectAllowlist []string `json:"redirect_allowlist"`
 			UAMode            string   `json:"ua_mode"`
 			Quota             int64    `json:"traffic_quota"`
 			SpeedLimit        int      `json:"speed_limit"`
@@ -2065,7 +2176,11 @@ func (a *App) handleSites(w http.ResponseWriter, r *http.Request) {
 		if req.StreamHosts == nil {
 			streamHostsJSON = []byte("[]")
 		}
-		site, err := a.db.CreateSite(req.Name, req.ListenPort, req.TargetURL, req.PlaybackTargetURL, req.PlaybackMode, string(streamHostsJSON), req.UAMode, req.Quota, req.SpeedLimit, req.ProxyID, req.ProxyName, req.CacheStatic, req.ThrottleProgress)
+		allowlistJSON, _ := json.Marshal(req.RedirectAllowlist)
+		if req.RedirectAllowlist == nil {
+			allowlistJSON = []byte("[]")
+		}
+		site, err := a.db.CreateSite(req.Name, req.ListenPort, req.TargetURL, req.PlaybackTargetURL, req.PlaybackMode, string(streamHostsJSON), string(allowlistJSON), req.UAMode, req.Quota, req.SpeedLimit, req.ProxyID, req.ProxyName, req.CacheStatic, req.ThrottleProgress)
 		if err != nil {
 			a.jsonErr(w, 500, err.Error())
 			return
@@ -2156,6 +2271,7 @@ func (a *App) handleSiteByID(w http.ResponseWriter, r *http.Request) {
 			PlaybackTargetURL *string   `json:"playback_target_url"`
 			PlaybackMode      *string   `json:"playback_mode"`
 			StreamHosts       *[]string `json:"stream_hosts"`
+			RedirectAllowlist *[]string `json:"redirect_allowlist"`
 			UAMode            string    `json:"ua_mode"`
 			Quota             int64     `json:"traffic_quota"`
 			SpeedLimit        int       `json:"speed_limit"`
@@ -2181,6 +2297,11 @@ func (a *App) handleSiteByID(w http.ResponseWriter, r *http.Request) {
 			sh, _ := json.Marshal(*req.StreamHosts)
 			streamHosts = string(sh)
 		}
+		redirectAllowlist := oldSite.RedirectAllowlist
+		if req.RedirectAllowlist != nil {
+			al, _ := json.Marshal(*req.RedirectAllowlist)
+			redirectAllowlist = string(al)
+		}
 		if req.UAMode == "" {
 			req.UAMode = oldSite.UAMode
 		}
@@ -2200,7 +2321,7 @@ func (a *App) handleSiteByID(w http.ResponseWriter, r *http.Request) {
 		if req.ThrottleProgress != nil {
 			throttleProgress = *req.ThrottleProgress
 		}
-		if err := a.db.UpdateSite(id, req.Name, req.ListenPort, req.TargetURL, playbackTargetURL, playbackMode, streamHosts, req.UAMode, req.Quota, req.SpeedLimit, proxyID, proxyName, cacheStatic, throttleProgress); err != nil {
+		if err := a.db.UpdateSite(id, req.Name, req.ListenPort, req.TargetURL, playbackTargetURL, playbackMode, streamHosts, redirectAllowlist, req.UAMode, req.Quota, req.SpeedLimit, proxyID, proxyName, cacheStatic, throttleProgress); err != nil {
 			a.jsonErr(w, 500, err.Error())
 			return
 		}
@@ -2215,7 +2336,7 @@ func (a *App) handleSiteByID(w http.ResponseWriter, r *http.Request) {
 				a.pm.StopSite(id)
 			}
 			if err := a.pm.StartSite(*site); err != nil {
-				if rollbackErr := a.db.UpdateSite(oldSite.ID, oldSite.Name, oldSite.ListenPort, oldSite.TargetURL, oldSite.PlaybackTargetURL, oldSite.PlaybackMode, oldSite.StreamHosts, oldSite.UAMode, oldSite.TrafficQuota, oldSite.SpeedLimit, oldSite.ProxyID, oldSite.ProxyName, oldSite.CacheStatic, oldSite.ThrottleProgress); rollbackErr != nil {
+				if rollbackErr := a.db.UpdateSite(oldSite.ID, oldSite.Name, oldSite.ListenPort, oldSite.TargetURL, oldSite.PlaybackTargetURL, oldSite.PlaybackMode, oldSite.StreamHosts, oldSite.RedirectAllowlist, oldSite.UAMode, oldSite.TrafficQuota, oldSite.SpeedLimit, oldSite.ProxyID, oldSite.ProxyName, oldSite.CacheStatic, oldSite.ThrottleProgress); rollbackErr != nil {
 					a.jsonErr(w, 500, fmt.Sprintf("start updated site: %v; rollback update: %v", err, rollbackErr))
 					return
 				}

@@ -173,6 +173,13 @@ function showSiteModal(site) {
       </select>
       <div class="form-help">直连分流：播放请求直接发送到首个播放回源（适合完整 Emby 实例）。重定向跟随：所有请求经主回源，自动跟随重定向到任一播放回源（适合多节点 CDN）。</div>
     </div>
+    <div class="form-group">
+      <label>重定向白名单（可选）</label>
+      <div id="m-allowlist"></div>
+      <button type="button" class="btn-ghost" id="m-add-allow" style="margin-top:6px;font-size:13px">+ 添加域名</button>
+      <div class="form-help">上游返回 30x 时：命中白名单的域名由本机代拉（经反代计流量）；未命中则原样透传给客户端直连。支持精确域名与通配符，如 <code>onedrive.live.com</code>、<code>*.sharepoint.com</code>、<code>*.cmecloud.cn</code>。国内直连云盘不要填。</div>
+    </div>
+
     <div class="form-row">
       <div class="form-group">
         <label>监听端口</label>
@@ -283,14 +290,53 @@ function showSiteModal(site) {
   }
   toggleModeGroup();
 
+  // Redirect allowlist (exact host or *.suffix)
+  const allowContainer = document.getElementById('m-allowlist');
+  let allowEntries = [];
+  if (isEdit) {
+    try {
+      const raw = JSON.parse(site.redirect_allowlist || '[]');
+      for (const h of raw) if (h && String(h).trim()) allowEntries.push(String(h).trim());
+    } catch(e) {}
+  }
+  if (allowEntries.length === 0) allowEntries = [''];
+
+  function renderAllowlistInputs() {
+    allowContainer.innerHTML = allowEntries.map((val, idx) => `
+      <div style="display:flex;gap:6px;margin-bottom:6px;align-items:center">
+        <input type="text" class="form-input m-al-input" value="${esc(val)}" placeholder="如 onedrive.live.com 或 *.sharepoint.com" style="flex:1">
+        ${allowEntries.length > 1 ? `<button type="button" class="btn-ghost danger m-al-remove" data-idx="${idx}" style="padding:4px 8px;font-size:13px;flex-shrink:0">删除</button>` : ''}
+      </div>
+    `).join('');
+    allowContainer.querySelectorAll('.m-al-remove').forEach(btn => {
+      btn.onclick = () => {
+        allowEntries.splice(parseInt(btn.dataset.idx), 1);
+        renderAllowlistInputs();
+      };
+    });
+    allowContainer.querySelectorAll('.m-al-input').forEach((inp, idx) => {
+      inp.oninput = () => { allowEntries[idx] = inp.value; };
+    });
+  }
+  renderAllowlistInputs();
+
+  document.getElementById('m-add-allow').onclick = () => {
+    allowEntries.push('');
+    renderAllowlistInputs();
+    const inputs = allowContainer.querySelectorAll('.m-al-input');
+    if (inputs.length) inputs[inputs.length - 1].focus();
+  };
+
   document.getElementById('m-submit').onclick = async () => {
     const allHosts = existingHosts.map(h => h.trim()).filter(Boolean);
+    const allowlist = allowEntries.map(h => h.trim()).filter(Boolean);
     const data = {
       name: document.getElementById('m-name').value.trim(),
       target_url: document.getElementById('m-target').value.trim(),
       playback_target_url: allHosts.length > 0 ? allHosts[0] : '',
       playback_mode: document.getElementById('m-playback-mode').value,
       stream_hosts: allHosts.length > 1 ? allHosts.slice(1) : [],
+      redirect_allowlist: allowlist,
       listen_port: parseInt(document.getElementById('m-port').value),
       ua_mode: document.getElementById('m-ua').value,
       traffic_quota: parseInt(document.getElementById('m-quota').value || 0) * 1073741824,

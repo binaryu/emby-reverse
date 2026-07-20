@@ -8,6 +8,7 @@ import (
 	"net"
 	"net/http"
 	"net/http/httptest"
+	"net/url"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -170,7 +171,7 @@ func TestDiagnoseSiteUsesRootSystemInfoProbe(t *testing.T) {
 	defer server.Close()
 
 	app := newTestApp(t)
-	site, err := app.db.CreateSite("diag", freePort(t), server.URL, "", "direct", "[]", "infuse", 0, 0, "", "", false, false)
+	site, err := app.db.CreateSite("diag", freePort(t), server.URL, "", "direct", "[]", "[]", "infuse", 0, 0, "", "", false, false)
 	if err != nil {
 		t.Fatalf("CreateSite: %v", err)
 	}
@@ -203,7 +204,7 @@ func TestDiagnoseSiteTreatsReachable4xxAsOnline(t *testing.T) {
 	defer server.Close()
 
 	app := newTestApp(t)
-	site, err := app.db.CreateSite("diag", freePort(t), server.URL, "", "direct", "[]", "infuse", 0, 0, "", "", false, false)
+	site, err := app.db.CreateSite("diag", freePort(t), server.URL, "", "direct", "[]", "[]", "infuse", 0, 0, "", "", false, false)
 	if err != nil {
 		t.Fatalf("CreateSite: %v", err)
 	}
@@ -231,7 +232,7 @@ func TestDiagnoseSiteMarksRootReachabilityFallbackProbe(t *testing.T) {
 	defer server.Close()
 
 	app := newTestApp(t)
-	site, err := app.db.CreateSite("diag", freePort(t), server.URL, "", "direct", "[]", "infuse", 0, 0, "", "", false, false)
+	site, err := app.db.CreateSite("diag", freePort(t), server.URL, "", "direct", "[]", "[]", "infuse", 0, 0, "", "", false, false)
 	if err != nil {
 		t.Fatalf("CreateSite: %v", err)
 	}
@@ -265,7 +266,7 @@ func TestHandleSiteDiagReturnsPlaybackFallbackMetadata(t *testing.T) {
 	defer apiServer.Close()
 
 	app := newTestApp(t)
-	site, err := app.db.CreateSite("diag", freePort(t), apiServer.URL, "", "direct", "[]", "infuse", 0, 0, "", "", false, false)
+	site, err := app.db.CreateSite("diag", freePort(t), apiServer.URL, "", "direct", "[]", "[]", "infuse", 0, 0, "", "", false, false)
 	if err != nil {
 		t.Fatalf("CreateSite: %v", err)
 	}
@@ -333,7 +334,7 @@ func TestHandleSiteDiagMarksSharedPlaybackTarget(t *testing.T) {
 	defer apiServer.Close()
 
 	app := newTestApp(t)
-	site, err := app.db.CreateSite("diag", freePort(t), apiServer.URL, apiServer.URL, "direct", "[]", "infuse", 0, 0, "", "", false, false)
+	site, err := app.db.CreateSite("diag", freePort(t), apiServer.URL, apiServer.URL, "direct", "[]", "[]", "infuse", 0, 0, "", "", false, false)
 	if err != nil {
 		t.Fatalf("CreateSite: %v", err)
 	}
@@ -394,7 +395,7 @@ func TestHandleSiteDiagExposesSeparatePlaybackTLS(t *testing.T) {
 	defer playbackServer.Close()
 
 	app := newTestApp(t)
-	site, err := app.db.CreateSite("diag", freePort(t), apiServer.URL, playbackServer.URL, "direct", "[]", "infuse", 0, 0, "", "", false, false)
+	site, err := app.db.CreateSite("diag", freePort(t), apiServer.URL, playbackServer.URL, "direct", "[]", "[]", "infuse", 0, 0, "", "", false, false)
 	if err != nil {
 		t.Fatalf("CreateSite: %v", err)
 	}
@@ -496,7 +497,7 @@ func TestHandleSiteDiagReturnsSpoofedVersionField(t *testing.T) {
 	defer apiServer.Close()
 
 	app := newTestApp(t)
-	site, err := app.db.CreateSite("diag", freePort(t), apiServer.URL, "", "direct", "[]", "client", 0, 0, "", "", false, false)
+	site, err := app.db.CreateSite("diag", freePort(t), apiServer.URL, "", "direct", "[]", "[]", "client", 0, 0, "", "", false, false)
 	if err != nil {
 		t.Fatalf("CreateSite: %v", err)
 	}
@@ -567,7 +568,7 @@ func TestHandleSiteToggleRevertsWhenStartFails(t *testing.T) {
 	}
 	defer occupied.Close()
 
-	site, err := app.db.CreateSite("disabled", port, "http://127.0.0.1:8096", "", "direct", "[]", "infuse", 0, 0, "", "", false, false)
+	site, err := app.db.CreateSite("disabled", port, "http://127.0.0.1:8096", "", "direct", "[]", "[]", "infuse", 0, 0, "", "", false, false)
 	if err != nil {
 		t.Fatalf("CreateSite: %v", err)
 	}
@@ -595,7 +596,7 @@ func TestHandleSiteToggleRevertsWhenStartFails(t *testing.T) {
 func TestHandleSiteUpdateRollsBackOnStartFailure(t *testing.T) {
 	app := newTestApp(t)
 	initialPort := freePort(t)
-	site, err := app.db.CreateSite("stable", initialPort, "http://127.0.0.1:8096", "", "direct", "[]", "infuse", 0, 0, "", "", false, false)
+	site, err := app.db.CreateSite("stable", initialPort, "http://127.0.0.1:8096", "", "direct", "[]", "[]", "infuse", 0, 0, "", "", false, false)
 	if err != nil {
 		t.Fatalf("CreateSite: %v", err)
 	}
@@ -639,7 +640,7 @@ func TestHandleSiteUpdateRollsBackOnStartFailure(t *testing.T) {
 
 func TestFlushTrafficUpdatesBaselineAndStopPersistsPendingUsage(t *testing.T) {
 	app := newTestApp(t)
-	site, err := app.db.CreateSite("traffic", freePort(t), "http://127.0.0.1:8096", "", "direct", "[]", "infuse", 1024, 0, "", "", false, false)
+	site, err := app.db.CreateSite("traffic", freePort(t), "http://127.0.0.1:8096", "", "direct", "[]", "[]", "infuse", 1024, 0, "", "", false, false)
 	if err != nil {
 		t.Fatalf("CreateSite: %v", err)
 	}
@@ -669,7 +670,7 @@ func TestFlushTrafficUpdatesBaselineAndStopPersistsPendingUsage(t *testing.T) {
 
 func TestAddTrafficAggregatesSameHour(t *testing.T) {
 	app := newTestApp(t)
-	site, err := app.db.CreateSite("aggregate", freePort(t), "http://127.0.0.1:8096", "", "direct", "[]", "infuse", 0, 0, "", "", false, false)
+	site, err := app.db.CreateSite("aggregate", freePort(t), "http://127.0.0.1:8096", "", "direct", "[]", "[]", "infuse", 0, 0, "", "", false, false)
 	if err != nil {
 		t.Fatalf("CreateSite: %v", err)
 	}
@@ -732,7 +733,7 @@ func TestProxyRoutesPlaybackRequestsToPlaybackTarget(t *testing.T) {
 	}))
 	defer playbackServer.Close()
 
-	site, err := app.db.CreateSite("split", freePort(t), apiServer.URL, playbackServer.URL, "direct", "[]", "infuse", 0, 0, "", "", false, false)
+	site, err := app.db.CreateSite("split", freePort(t), apiServer.URL, playbackServer.URL, "direct", "[]", "[]", "infuse", 0, 0, "", "", false, false)
 	if err != nil {
 		t.Fatalf("CreateSite: %v", err)
 	}
@@ -769,7 +770,7 @@ func TestProxyPlaybackRequestsFallBackToMainTarget(t *testing.T) {
 	}))
 	defer apiServer.Close()
 
-	site, err := app.db.CreateSite("single", freePort(t), apiServer.URL, "", "direct", "[]", "infuse", 0, 0, "", "", false, false)
+	site, err := app.db.CreateSite("single", freePort(t), apiServer.URL, "", "direct", "[]", "[]", "infuse", 0, 0, "", "", false, false)
 	if err != nil {
 		t.Fatalf("CreateSite: %v", err)
 	}
@@ -810,7 +811,7 @@ func TestProxyInjectsEMOSHeadersAndRange206(t *testing.T) {
 	}))
 	defer upstream.Close()
 
-	site, err := app.db.CreateSite("emos", freePort(t), upstream.URL, "", "direct", "[]", "infuse", 0, 0, "eABCDEFGHs", "@emos", false, false)
+	site, err := app.db.CreateSite("emos", freePort(t), upstream.URL, "", "direct", "[]", "[]", "infuse", 0, 0, "eABCDEFGHs", "@emos", false, false)
 	if err != nil {
 		t.Fatalf("CreateSite: %v", err)
 	}
@@ -869,7 +870,7 @@ func TestProxyCachesPingAndThrottlesProgress(t *testing.T) {
 	}))
 	defer upstream.Close()
 
-	site, err := app.db.CreateSite("cache", freePort(t), upstream.URL, "", "direct", "[]", "infuse", 0, 0, "e1", "@t", true, true)
+	site, err := app.db.CreateSite("cache", freePort(t), upstream.URL, "", "direct", "[]", "[]", "infuse", 0, 0, "e1", "@t", true, true)
 	if err != nil {
 		t.Fatalf("CreateSite: %v", err)
 	}
@@ -913,7 +914,7 @@ func TestProxyCachesPingAndThrottlesProgress(t *testing.T) {
 
 func TestSitePersistsEMOSProxyFields(t *testing.T) {
 	app := newTestApp(t)
-	site, err := app.db.CreateSite("p", freePort(t), "http://127.0.0.1:8096", "", "direct", "[]", "infuse", 0, 0, "eID", "@name", true, true)
+	site, err := app.db.CreateSite("p", freePort(t), "http://127.0.0.1:8096", "", "direct", "[]", "[]", "infuse", 0, 0, "eID", "@name", true, true)
 	if err != nil {
 		t.Fatalf("CreateSite: %v", err)
 	}
@@ -924,7 +925,7 @@ func TestSitePersistsEMOSProxyFields(t *testing.T) {
 	if got.ProxyID != "eID" || got.ProxyName != "@name" || !got.CacheStatic || !got.ThrottleProgress {
 		t.Fatalf("persisted fields = %+v", got)
 	}
-	if err := app.db.UpdateSite(site.ID, got.Name, got.ListenPort, got.TargetURL, got.PlaybackTargetURL, got.PlaybackMode, got.StreamHosts, got.UAMode, got.TrafficQuota, got.SpeedLimit, "e2", "@n2", false, true); err != nil {
+	if err := app.db.UpdateSite(site.ID, got.Name, got.ListenPort, got.TargetURL, got.PlaybackTargetURL, got.PlaybackMode, got.StreamHosts, got.RedirectAllowlist, got.UAMode, got.TrafficQuota, got.SpeedLimit, "e2", "@n2", false, true); err != nil {
 		t.Fatalf("UpdateSite: %v", err)
 	}
 	got, err = app.db.GetSite(site.ID)
@@ -933,6 +934,134 @@ func TestSitePersistsEMOSProxyFields(t *testing.T) {
 	}
 	if got.ProxyID != "e2" || got.ProxyName != "@n2" || got.CacheStatic || !got.ThrottleProgress {
 		t.Fatalf("updated fields = %+v", got)
+	}
+}
+
+func TestHostMatchesAllowlistWildcard(t *testing.T) {
+	patterns := []string{"onedrive.live.com", "*.sharepoint.com", "*.cmecloud.cn", "https://cdn.example.com/path"}
+	cases := []struct {
+		host string
+		want bool
+	}{
+		{"onedrive.live.com", true},
+		{"ONEDRIVE.LIVE.COM", true},
+		{"sub.onedrive.live.com", false},
+		{"contoso.sharepoint.com", true},
+		{"a.b.sharepoint.com", true},
+		{"sharepoint.com", true},
+		{"evilsharepoint.com", false},
+		{"dl.cmecloud.cn", true},
+		{"cmecloud.cn", true},
+		{"cdn.example.com", true},
+		{"cdn.example.com:443", true},
+		{"other.example.com", false},
+		{"cloud.189.cn", false},
+	}
+	for _, tc := range cases {
+		if got := hostMatchesAllowlist(tc.host, patterns); got != tc.want {
+			t.Fatalf("hostMatchesAllowlist(%q) = %v, want %v", tc.host, got, tc.want)
+		}
+	}
+}
+
+func TestProxyFollowsAllowlistedRedirect(t *testing.T) {
+	app := newTestApp(t)
+
+	cdnHits := 0
+	cdn := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		cdnHits++
+		w.Write([]byte("cdn-body"))
+	}))
+	defer cdn.Close()
+
+	cdnURL, err := url.Parse(cdn.URL)
+	if err != nil {
+		t.Fatalf("parse cdn: %v", err)
+	}
+
+	emby := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, cdn.URL+"/file.mp4", http.StatusPermanentRedirect)
+	}))
+	defer emby.Close()
+
+	allowJSON, _ := json.Marshal([]string{cdnURL.Hostname(), "*." + cdnURL.Hostname()})
+	site, err := app.db.CreateSite("redir", freePort(t), emby.URL, "", "direct", "[]", string(allowJSON), "infuse", 0, 0, "", "", false, false)
+	if err != nil {
+		t.Fatalf("CreateSite: %v", err)
+	}
+	if err := app.pm.StartSite(*site); err != nil {
+		t.Fatalf("StartSite: %v", err)
+	}
+	t.Cleanup(func() { app.pm.StopSite(site.ID) })
+
+	// Disable client-side redirect following so we observe proxy behavior.
+	client := &http.Client{
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return http.ErrUseLastResponse
+		},
+	}
+	resp, err := client.Get(fmt.Sprintf("http://127.0.0.1:%d/Videos/1/stream", site.ListenPort))
+	if err != nil {
+		t.Fatalf("GET: %v", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		t.Fatalf("status = %d, want 200 (proxy should follow allowlisted 308)", resp.StatusCode)
+	}
+	if body := mustReadBody(t, resp); body != "cdn-body" {
+		t.Fatalf("body = %q, want cdn-body", body)
+	}
+	if cdnHits != 1 {
+		t.Fatalf("cdnHits = %d, want 1", cdnHits)
+	}
+}
+
+func TestProxyPassesThroughNonAllowlistedRedirect(t *testing.T) {
+	app := newTestApp(t)
+
+	cdnHits := 0
+	cdn := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		cdnHits++
+		w.Write([]byte("cdn-body"))
+	}))
+	defer cdn.Close()
+
+	emby := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, cdn.URL+"/file.mp4", http.StatusPermanentRedirect)
+	}))
+	defer emby.Close()
+
+	// Allowlist something else — CDN must pass through.
+	site, err := app.db.CreateSite("pass", freePort(t), emby.URL, "", "direct", "[]", `["onedrive.live.com"]`, "infuse", 0, 0, "", "", false, false)
+	if err != nil {
+		t.Fatalf("CreateSite: %v", err)
+	}
+	if err := app.pm.StartSite(*site); err != nil {
+		t.Fatalf("StartSite: %v", err)
+	}
+	t.Cleanup(func() { app.pm.StopSite(site.ID) })
+
+	client := &http.Client{
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return http.ErrUseLastResponse
+		},
+	}
+	resp, err := client.Get(fmt.Sprintf("http://127.0.0.1:%d/Videos/1/stream", site.ListenPort))
+	if err != nil {
+		t.Fatalf("GET: %v", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusPermanentRedirect {
+		t.Fatalf("status = %d, want 308 pass-through", resp.StatusCode)
+	}
+	loc := resp.Header.Get("Location")
+	if !strings.Contains(loc, cdn.URL) {
+		t.Fatalf("Location = %q, want cdn URL", loc)
+	}
+	if cdnHits != 0 {
+		t.Fatalf("cdnHits = %d, want 0 (client would hit CDN directly)", cdnHits)
 	}
 }
 
