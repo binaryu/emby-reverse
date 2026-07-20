@@ -43,12 +43,16 @@ type UAProfile struct {
 	UserAgent string `json:"user_agent"`
 	Client    string `json:"client"`
 	Version   string `json:"version"`
+	// Passthrough: when true, applyUAProfileHeaders must NOT touch User-Agent
+	// or X-Emby-Authorization / Authorization. Used to forward client headers verbatim.
+	Passthrough bool `json:"passthrough"`
 }
 
 var uaProfiles = map[string]UAProfile{
-	"infuse": {Name: "Infuse", UserAgent: "Infuse/7.8.1", Client: "Infuse", Version: "7.8.1"},
-	"web":    {Name: "Web", UserAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Emby Theater", Client: "Emby Web", Version: "4.9.0.42"},
-	"client": {Name: "Client", UserAgent: "Emby-Theater/4.7.0", Client: "Emby Theater", Version: "4.7.0"},
+	"passthrough": {Name: "Passthrough", Passthrough: true},
+	"infuse":      {Name: "Infuse", UserAgent: "Infuse/7.8.1", Client: "Infuse", Version: "7.8.1"},
+	"web":         {Name: "Web", UserAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Emby Theater", Client: "Emby Web", Version: "4.9.0.42"},
+	"client":      {Name: "Client", UserAgent: "Emby-Theater/4.7.0", Client: "Emby Theater", Version: "4.7.0"},
 }
 
 func getUAProfile(mode string) UAProfile {
@@ -987,6 +991,10 @@ func upstreamTargetForRequest(r *http.Request, apiTarget, playbackTarget *url.UR
 }
 
 func applyUAProfileHeaders(header http.Header, profile UAProfile) {
+	if profile.Passthrough {
+		// Do not touch client-provided UA / Emby auth headers.
+		return
+	}
 	header.Set("User-Agent", profile.UserAgent)
 	if auth := header.Get("X-Emby-Authorization"); auth != "" {
 		if embyAuthClientRe.MatchString(auth) {

@@ -181,10 +181,12 @@ function showSiteModal(site) {
       <div class="form-group">
         <label>UA 模式</label>
         <select class="form-select modal-select" id="m-ua">
+          <option value="passthrough" ${(!isEdit || site.ua_mode === 'passthrough') ? 'selected' : ''}>透传（不改写）</option>
           <option value="infuse" ${(!isEdit || site.ua_mode === 'infuse') ? 'selected' : ''}>Infuse</option>
           <option value="web" ${isEdit && site.ua_mode === 'web' ? 'selected' : ''}>Web</option>
           <option value="client" ${isEdit && site.ua_mode === 'client' ? 'selected' : ''}>客户端</option>
         </select>
+        <div class="form-help">透传：原样保留客户端的 UA 与 Emby 认证头，不做任何改写。其他模式按预设伪装客户端。</div>
       </div>
     </div>
     <div class="form-row">
