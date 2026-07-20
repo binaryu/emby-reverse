@@ -37,8 +37,7 @@ import (
 	"meridian/web"
 )
 
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?// UA Profiles 闂?only 3 modes
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?
+// UA Profiles — only 3 modes
 type UAProfile struct {
 	Name      string `json:"name"`
 	UserAgent string `json:"user_agent"`
@@ -59,8 +58,7 @@ func getUAProfile(mode string) UAProfile {
 	return uaProfiles["infuse"]
 }
 
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?// JWT helpers (simple HMAC-SHA256)
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?
+// JWT helpers (simple HMAC-SHA256)
 var jwtSecret []byte
 var jwtSecretEphemeral bool
 
@@ -83,7 +81,7 @@ func resolveJWTSecret(value string) ([]byte, bool, error) {
 	return secret, true, nil
 }
 
-// Minimal JWT 闂?no external dependency
+// Minimal JWT, no external dependency
 func generateToken(userID int64, username string) (string, error) {
 	header := base64url([]byte(`{"alg":"HS256","typ":"JWT"}`))
 	payload, err := json.Marshal(struct {
@@ -130,8 +128,7 @@ func validateToken(token string) (int64, string, error) {
 	return claims.Sub, claims.Name, nil
 }
 
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?// Crypto helpers
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?
+// Crypto helpers
 
 func hmacSHA256(data string, key []byte) string {
 	h := hmac.New(sha256.New, key)
@@ -159,8 +156,7 @@ func generateID() string {
 	return hex.EncodeToString(b)
 }
 
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?// Database
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?
+// Database
 type DB struct {
 	db *sql.DB
 }
@@ -200,6 +196,10 @@ func (d *DB) migrate() error {
 		traffic_quota BIGINT DEFAULT 0,
 		traffic_used BIGINT DEFAULT 0,
 		speed_limit INTEGER DEFAULT 0,
+		proxy_id TEXT NOT NULL DEFAULT '',
+		proxy_name TEXT NOT NULL DEFAULT '',
+		cache_static INTEGER NOT NULL DEFAULT 0,
+		throttle_progress INTEGER NOT NULL DEFAULT 0,
 		created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 		updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 	);
@@ -243,6 +243,26 @@ func (d *DB) migrate() error {
 	if hasStreamHostsColumn == 0 {
 		if _, err := d.db.Exec("ALTER TABLE sites ADD COLUMN stream_hosts TEXT NOT NULL DEFAULT '[]'"); err != nil {
 			return err
+		}
+	}
+
+	for _, col := range []struct {
+		name string
+		def  string
+	}{
+		{"proxy_id", "TEXT NOT NULL DEFAULT ''"},
+		{"proxy_name", "TEXT NOT NULL DEFAULT ''"},
+		{"cache_static", "INTEGER NOT NULL DEFAULT 0"},
+		{"throttle_progress", "INTEGER NOT NULL DEFAULT 0"},
+	} {
+		var n int
+		if err := d.db.QueryRow("SELECT COUNT(*) FROM pragma_table_info('sites') WHERE name=?", col.name).Scan(&n); err != nil {
+			return err
+		}
+		if n == 0 {
+			if _, err := d.db.Exec("ALTER TABLE sites ADD COLUMN " + col.name + " " + col.def); err != nil {
+				return err
+			}
 		}
 	}
 
@@ -295,8 +315,7 @@ func (d *DB) migrate() error {
 	return tx.Commit()
 }
 
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?// Models
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?
+// Models
 type Site struct {
 	ID                int64  `json:"id"`
 	Name              string `json:"name"`
@@ -310,6 +329,10 @@ type Site struct {
 	TrafficQuota      int64  `json:"traffic_quota"`
 	TrafficUsed       int64  `json:"traffic_used"`
 	SpeedLimit        int    `json:"speed_limit"`
+	ProxyID           string `json:"proxy_id"`
+	ProxyName         string `json:"proxy_name"`
+	CacheStatic       bool   `json:"cache_static"`
+	ThrottleProgress  bool   `json:"throttle_progress"`
 	CreatedAt         string `json:"created_at"`
 	UpdatedAt         string `json:"updated_at"`
 }
@@ -322,8 +345,7 @@ type TrafficLog struct {
 	RecordedAt string `json:"recorded_at"`
 }
 
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?// DB operations
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?
+// DB operations
 func (d *DB) UserCount() int {
 	var n int
 	d.db.QueryRow("SELECT COUNT(*) FROM users").Scan(&n)
@@ -356,7 +378,7 @@ func (d *DB) VerifyUser(username, password string) (int64, error) {
 }
 
 func (d *DB) ListSites() ([]Site, error) {
-	rows, err := d.db.Query("SELECT id, name, listen_port, target_url, playback_target_url, playback_mode, stream_hosts, ua_mode, enabled, traffic_quota, traffic_used, speed_limit, created_at, updated_at FROM sites ORDER BY id")
+	rows, err := d.db.Query("SELECT id, name, listen_port, target_url, playback_target_url, playback_mode, stream_hosts, ua_mode, enabled, traffic_quota, traffic_used, speed_limit, proxy_id, proxy_name, cache_static, throttle_progress, created_at, updated_at FROM sites ORDER BY id")
 	if err != nil {
 		return nil, err
 	}
@@ -365,8 +387,11 @@ func (d *DB) ListSites() ([]Site, error) {
 	for rows.Next() {
 		var s Site
 		var enabled int
-		rows.Scan(&s.ID, &s.Name, &s.ListenPort, &s.TargetURL, &s.PlaybackTargetURL, &s.PlaybackMode, &s.StreamHosts, &s.UAMode, &enabled, &s.TrafficQuota, &s.TrafficUsed, &s.SpeedLimit, &s.CreatedAt, &s.UpdatedAt)
+		var cacheStatic, throttleProgress int
+		rows.Scan(&s.ID, &s.Name, &s.ListenPort, &s.TargetURL, &s.PlaybackTargetURL, &s.PlaybackMode, &s.StreamHosts, &s.UAMode, &enabled, &s.TrafficQuota, &s.TrafficUsed, &s.SpeedLimit, &s.ProxyID, &s.ProxyName, &cacheStatic, &throttleProgress, &s.CreatedAt, &s.UpdatedAt)
 		s.Enabled = enabled == 1
+		s.CacheStatic = cacheStatic == 1
+		s.ThrottleProgress = throttleProgress == 1
 		sites = append(sites, s)
 	}
 	if sites == nil {
@@ -378,22 +403,32 @@ func (d *DB) ListSites() ([]Site, error) {
 func (d *DB) GetSite(id int64) (*Site, error) {
 	var s Site
 	var enabled int
-	err := d.db.QueryRow("SELECT id, name, listen_port, target_url, playback_target_url, playback_mode, stream_hosts, ua_mode, enabled, traffic_quota, traffic_used, speed_limit, created_at, updated_at FROM sites WHERE id=?", id).
-		Scan(&s.ID, &s.Name, &s.ListenPort, &s.TargetURL, &s.PlaybackTargetURL, &s.PlaybackMode, &s.StreamHosts, &s.UAMode, &enabled, &s.TrafficQuota, &s.TrafficUsed, &s.SpeedLimit, &s.CreatedAt, &s.UpdatedAt)
+	var cacheStatic, throttleProgress int
+	err := d.db.QueryRow("SELECT id, name, listen_port, target_url, playback_target_url, playback_mode, stream_hosts, ua_mode, enabled, traffic_quota, traffic_used, speed_limit, proxy_id, proxy_name, cache_static, throttle_progress, created_at, updated_at FROM sites WHERE id=?", id).
+		Scan(&s.ID, &s.Name, &s.ListenPort, &s.TargetURL, &s.PlaybackTargetURL, &s.PlaybackMode, &s.StreamHosts, &s.UAMode, &enabled, &s.TrafficQuota, &s.TrafficUsed, &s.SpeedLimit, &s.ProxyID, &s.ProxyName, &cacheStatic, &throttleProgress, &s.CreatedAt, &s.UpdatedAt)
 	if err != nil {
 		return nil, err
 	}
 	s.Enabled = enabled == 1
+	s.CacheStatic = cacheStatic == 1
+	s.ThrottleProgress = throttleProgress == 1
 	return &s, nil
 }
 
-func (d *DB) CreateSite(name string, port int, targetURL, playbackTargetURL, playbackMode, streamHosts, uaMode string, quota int64, speedLimit int) (*Site, error) {
+func (d *DB) CreateSite(name string, port int, targetURL, playbackTargetURL, playbackMode, streamHosts, uaMode string, quota int64, speedLimit int, proxyID, proxyName string, cacheStatic, throttleProgress bool) (*Site, error) {
 	if streamHosts == "" {
 		streamHosts = "[]"
 	}
+	cs, tp := 0, 0
+	if cacheStatic {
+		cs = 1
+	}
+	if throttleProgress {
+		tp = 1
+	}
 	res, err := d.db.Exec(
-		"INSERT INTO sites (name, listen_port, target_url, playback_target_url, playback_mode, stream_hosts, ua_mode, traffic_quota, speed_limit) VALUES (?,?,?,?,?,?,?,?,?)",
-		name, port, targetURL, playbackTargetURL, playbackMode, streamHosts, uaMode, quota, speedLimit,
+		"INSERT INTO sites (name, listen_port, target_url, playback_target_url, playback_mode, stream_hosts, ua_mode, traffic_quota, speed_limit, proxy_id, proxy_name, cache_static, throttle_progress) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+		name, port, targetURL, playbackTargetURL, playbackMode, streamHosts, uaMode, quota, speedLimit, proxyID, proxyName, cs, tp,
 	)
 	if err != nil {
 		return nil, err
@@ -402,13 +437,20 @@ func (d *DB) CreateSite(name string, port int, targetURL, playbackTargetURL, pla
 	return d.GetSite(id)
 }
 
-func (d *DB) UpdateSite(id int64, name string, port int, targetURL, playbackTargetURL, playbackMode, streamHosts, uaMode string, quota int64, speedLimit int) error {
+func (d *DB) UpdateSite(id int64, name string, port int, targetURL, playbackTargetURL, playbackMode, streamHosts, uaMode string, quota int64, speedLimit int, proxyID, proxyName string, cacheStatic, throttleProgress bool) error {
 	if streamHosts == "" {
 		streamHosts = "[]"
 	}
+	cs, tp := 0, 0
+	if cacheStatic {
+		cs = 1
+	}
+	if throttleProgress {
+		tp = 1
+	}
 	_, err := d.db.Exec(
-		"UPDATE sites SET name=?, listen_port=?, target_url=?, playback_target_url=?, playback_mode=?, stream_hosts=?, ua_mode=?, traffic_quota=?, speed_limit=?, updated_at=CURRENT_TIMESTAMP WHERE id=?",
-		name, port, targetURL, playbackTargetURL, playbackMode, streamHosts, uaMode, quota, speedLimit, id,
+		"UPDATE sites SET name=?, listen_port=?, target_url=?, playback_target_url=?, playback_mode=?, stream_hosts=?, ua_mode=?, traffic_quota=?, speed_limit=?, proxy_id=?, proxy_name=?, cache_static=?, throttle_progress=?, updated_at=CURRENT_TIMESTAMP WHERE id=?",
+		name, port, targetURL, playbackTargetURL, playbackMode, streamHosts, uaMode, quota, speedLimit, proxyID, proxyName, cs, tp, id,
 	)
 	return err
 }
@@ -498,12 +540,12 @@ func (d *DB) DashboardStats() map[string]interface{} {
 	}
 }
 
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?// Proxy Engine
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?
+// Proxy Engine
 type redirectFollowTransport struct {
 	base          http.RoundTripper
 	playbackHosts map[string]bool
 	profile       UAProfile
+	site          Site
 }
 
 func (t *redirectFollowTransport) RoundTrip(req *http.Request) (*http.Response, error) {
@@ -539,6 +581,7 @@ func (t *redirectFollowTransport) RoundTrip(req *http.Request) (*http.Response, 
 		}
 		newReq.Host = locURL.Host
 		applyUAProfileHeaders(newReq.Header, t.profile)
+		applyEMOSProxyHeaders(newReq.Header, t.site)
 		resp, err = t.base.RoundTrip(newReq)
 		if err != nil {
 			return nil, err
@@ -550,6 +593,235 @@ func (t *redirectFollowTransport) RoundTrip(req *http.Request) (*http.Response, 
 
 var embyAuthClientRe = regexp.MustCompile(`(?i)(Client=")[^"]*"`)
 var embyAuthVersionRe = regexp.MustCompile(`(?i)(Version=")[^"]*"`)
+
+// Emby path helpers (optional /emby prefix for reverse-proxy base paths)
+var (
+	reImagePath    = regexp.MustCompile(`(?i)(?:/emby)?/Items/[^/]+/Images/`)
+	rePingPath     = regexp.MustCompile(`(?i)(?:/emby)?/System/Ping/?$`)
+	reProgressPath = regexp.MustCompile(`(?i)(?:/emby)?/Sessions/Playing/Progress/?$`)
+)
+
+func isImageCachePath(p string) bool { return reImagePath.MatchString(p) }
+func isPingPath(p string) bool       { return rePingPath.MatchString(p) }
+func isProgressPath(p string) bool   { return reProgressPath.MatchString(p) }
+func isStaticCachePath(p string) bool {
+	return isImageCachePath(p) || isPingPath(p)
+}
+
+func clientIPFromRemoteAddr(remoteAddr string) string {
+	ip, _, err := net.SplitHostPort(remoteAddr)
+	if err != nil {
+		return remoteAddr
+	}
+	return ip
+}
+
+func applyEMOSProxyHeaders(h http.Header, site Site) {
+	if id := strings.TrimSpace(site.ProxyID); id != "" {
+		h.Set("EMOS-PROXY-ID", id)
+	}
+	if name := strings.TrimSpace(site.ProxyName); name != "" {
+		h.Set("EMOS-PROXY-NAME", name)
+	}
+}
+
+func applyXForwardedFor(h http.Header, remoteAddr string) {
+	ip := clientIPFromRemoteAddr(remoteAddr)
+	if ip == "" {
+		return
+	}
+	if prior := h.Get("X-Forwarded-For"); prior != "" {
+		// Avoid duplicating the same trailing hop.
+		parts := strings.Split(prior, ",")
+		last := strings.TrimSpace(parts[len(parts)-1])
+		if last == ip {
+			return
+		}
+		h.Set("X-Forwarded-For", prior+", "+ip)
+		return
+	}
+	h.Set("X-Forwarded-For", ip)
+}
+
+// staticResponseCache caches GET 200 bodies for images and System/Ping.
+type staticResponseCache struct {
+	mu      sync.Mutex
+	entries map[string]staticCacheEntry
+	maxBody int
+	maxKeys int
+}
+
+type staticCacheEntry struct {
+	status  int
+	header  http.Header
+	body    []byte
+	expires time.Time
+}
+
+func newStaticResponseCache() *staticResponseCache {
+	return &staticResponseCache{
+		entries: make(map[string]staticCacheEntry),
+		maxBody: 2 << 20, // 2 MiB per entry
+		maxKeys: 512,
+	}
+}
+
+func (c *staticResponseCache) get(key string) (staticCacheEntry, bool) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	e, ok := c.entries[key]
+	if !ok {
+		return staticCacheEntry{}, false
+	}
+	if time.Now().After(e.expires) {
+		delete(c.entries, key)
+		return staticCacheEntry{}, false
+	}
+	return e, true
+}
+
+func (c *staticResponseCache) set(key string, status int, header http.Header, body []byte, ttl time.Duration) {
+	if status != http.StatusOK || len(body) == 0 || len(body) > c.maxBody {
+		return
+	}
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	if len(c.entries) >= c.maxKeys {
+		// Drop an arbitrary expired or first key.
+		now := time.Now()
+		for k, e := range c.entries {
+			if now.After(e.expires) {
+				delete(c.entries, k)
+			}
+			if len(c.entries) < c.maxKeys {
+				break
+			}
+			delete(c.entries, k)
+			break
+		}
+	}
+	cloned := make(http.Header, len(header))
+	for k, vv := range header {
+		cloned[k] = append([]string(nil), vv...)
+	}
+	// Hop-by-hop / length headers rebuilt on serve.
+	cloned.Del("Transfer-Encoding")
+	cloned.Del("Connection")
+	c.entries[key] = staticCacheEntry{
+		status:  status,
+		header:  cloned,
+		body:    append([]byte(nil), body...),
+		expires: time.Now().Add(ttl),
+	}
+}
+
+func staticCacheKey(siteID int64, r *http.Request) string {
+	return fmt.Sprintf("%d|%s|%s|%s", siteID, r.Method, r.URL.Path, r.URL.RawQuery)
+}
+
+func staticCacheTTL(path string) time.Duration {
+	if isPingPath(path) {
+		return 30 * time.Second
+	}
+	return time.Hour
+}
+
+// capturingWriter records a 200 response for static cache population.
+type capturingWriter struct {
+	http.ResponseWriter
+	status  int
+	header  http.Header
+	buf     []byte
+	limit   int
+	capture bool
+	written *atomic.Int64
+}
+
+func (w *capturingWriter) WriteHeader(code int) {
+	if w.status == 0 {
+		w.status = code
+		w.header = w.ResponseWriter.Header().Clone()
+		w.ResponseWriter.WriteHeader(code)
+	}
+}
+
+func (w *capturingWriter) Write(b []byte) (int, error) {
+	if w.status == 0 {
+		w.WriteHeader(http.StatusOK)
+	}
+	if w.capture && w.status == http.StatusOK && len(w.buf) < w.limit {
+		remain := w.limit - len(w.buf)
+		if len(b) > remain {
+			w.buf = append(w.buf, b[:remain]...)
+			w.capture = false // oversize: abandon capture
+			w.buf = nil
+		} else {
+			w.buf = append(w.buf, b...)
+		}
+	}
+	n, err := w.ResponseWriter.Write(b)
+	if w.written != nil && n > 0 {
+		w.written.Add(int64(n))
+	}
+	return n, err
+}
+
+func (w *capturingWriter) Flush() {
+	if f, ok := w.ResponseWriter.(http.Flusher); ok {
+		f.Flush()
+	}
+}
+
+func (w *capturingWriter) Hijack() (net.Conn, *bufio.ReadWriter, error) {
+	hj, ok := w.ResponseWriter.(http.Hijacker)
+	if !ok {
+		return nil, nil, fmt.Errorf("hijack not supported")
+	}
+	return hj.Hijack()
+}
+
+// progressThrottle rate-limits Playing/Progress reports per client key.
+type progressThrottle struct {
+	mu   sync.Mutex
+	last map[string]time.Time
+}
+
+func newProgressThrottle() *progressThrottle {
+	return &progressThrottle{last: make(map[string]time.Time)}
+}
+
+func (t *progressThrottle) allow(key string, minInterval time.Duration) bool {
+	now := time.Now()
+	t.mu.Lock()
+	defer t.mu.Unlock()
+	// Opportunistic cleanup
+	if len(t.last) > 4096 {
+		for k, ts := range t.last {
+			if now.Sub(ts) > minInterval*4 {
+				delete(t.last, k)
+			}
+		}
+	}
+	if ts, ok := t.last[key]; ok && now.Sub(ts) < minInterval {
+		return false
+	}
+	t.last[key] = now
+	return true
+}
+
+func progressThrottleKey(siteID int64, r *http.Request) string {
+	ip := clientIPFromRemoteAddr(r.RemoteAddr)
+	token := r.Header.Get("X-Emby-Token")
+	if token == "" {
+		token = r.Header.Get("Authorization")
+	}
+	return fmt.Sprintf("%d|%s|%s", siteID, ip, token)
+}
+
+var (
+	globalStaticCache     = newStaticResponseCache()
+	globalProgressLimiter = newProgressThrottle()
+)
 
 type ProxyInstance struct {
 	Site             Site
@@ -613,7 +885,7 @@ func (m *meteredReader) Read(p []byte) (int, error) {
 	return n, err
 }
 
-// 闂傚倸鍊搁崐椋庣矆娓氣偓瀹曨垶宕稿Δ鈧崒銊︾節婵犲倻澧曠痪鎯ь煼閺岀喖宕滆鐢盯鏌ｉ幘鍐叉殻闁哄本绋栫粻娑㈠箼閸愨敩锔界箾?Rate-limited writer (token bucket) 闂傚倸鍊搁崐椋庣矆娓氣偓瀹曨垶宕稿Δ鈧崒銊︾節婵犲倻澧曠痪鎯ь煼閺岀喖宕滆鐢盯鏌ｉ幘鍐叉殻闁哄本绋栫粻娑㈠箼閸愨敩锔界箾?
+// Rate-limited writer (token bucket)
 type rateLimitedWriter struct {
 	http.ResponseWriter
 	bytesPerSec int64
@@ -666,7 +938,7 @@ func (w *rateLimitedWriter) Hijack() (net.Conn, *bufio.ReadWriter, error) {
 	return nil, nil, fmt.Errorf("hijack not supported")
 }
 
-// 闂傚倸鍊搁崐椋庣矆娓氣偓瀹曨垶宕稿Δ鈧崒銊︾節婵犲倻澧曠痪鎯ь煼閺岀喖宕滆鐢盯鏌ｉ幘鍐叉殻闁哄本绋栫粻娑㈠箼閸愨敩锔界箾?WebSocket tunnel 闂傚倸鍊搁崐椋庣矆娓氣偓瀹曨垶宕稿Δ鈧崒銊︾節婵犲倻澧曠痪鎯ь煼閺岀喖宕滆鐢盯鏌ｉ幘鍐叉殻闁哄本绋栫粻娑㈠箼閸愨敩锔界箾?
+// WebSocket tunnel
 func isWebSocketUpgrade(r *http.Request) bool {
 	return strings.EqualFold(r.Header.Get("Upgrade"), "websocket")
 }
@@ -785,6 +1057,8 @@ func handleWebSocket(w http.ResponseWriter, r *http.Request, target *url.URL, pr
 	upstreamConn.Write([]byte(reqLine))
 	r.Header.Set("Host", target.Host)
 	applyUAProfileHeaders(r.Header, profile)
+	applyEMOSProxyHeaders(r.Header, inst.Site)
+	applyXForwardedFor(r.Header, r.RemoteAddr)
 	r.Header.Write(upstreamConn)
 	upstreamConn.Write([]byte("\r\n"))
 
@@ -844,6 +1118,8 @@ func (pm *ProxyManager) StartSite(site Site) error {
 	isRedirectMode := playbackTarget != nil && site.PlaybackMode == "redirect"
 
 	proxy := &httputil.ReverseProxy{
+		// Flush streaming media (including HTTP 206 partial content) promptly.
+		FlushInterval: 100 * time.Millisecond,
 		Director: func(req *http.Request) {
 			var upstream *url.URL
 			if isRedirectMode {
@@ -855,6 +1131,9 @@ func (pm *ProxyManager) StartSite(site Site) error {
 			req.URL.Host = upstream.Host
 			req.Host = upstream.Host
 			applyUAProfileHeaders(req.Header, profile)
+			applyEMOSProxyHeaders(req.Header, site)
+			// Preserve Range / conditional headers for 206 partial content streaming.
+			// httputil.ReverseProxy also appends X-Forwarded-For from RemoteAddr.
 		},
 		ModifyResponse: func(resp *http.Response) error {
 			resp.Header.Del("X-Frame-Options")
@@ -873,6 +1152,7 @@ func (pm *ProxyManager) StartSite(site Site) error {
 			base:          http.DefaultTransport,
 			playbackHosts: playbackHostsSet,
 			profile:       profile,
+			site:          site,
 		}
 	}
 
@@ -882,18 +1162,45 @@ func (pm *ProxyManager) StartSite(site Site) error {
 	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		inst.reqCount.Add(1)
 
-		// 闂傚倸鍊搁崐椋庣矆娓氣偓瀹曨垶宕稿Δ鈧崒銊︾節婵犲倻澧曠痪鎯ь煼閺岀喖宕滆鐢盯鏌ｉ幘鍐叉殻闁哄本绋栫粻娑㈠箼閸愨敩锔界箾?Traffic quota check 闂傚倸鍊搁崐椋庣矆娓氣偓瀹曨垶宕稿Δ鈧崒銊︾節婵犲倻澧曠痪鎯ь煼閺岀喖宕滆鐢盯鏌ｉ幘鍐叉殻闁哄本绋栫粻娑㈠箼閸愨敩锔界箾?
+		// Traffic quota check
 		if site.TrafficQuota > 0 {
 			currentUsed := inst.persistedTraffic.Load() + inst.bytesIn.Load() + inst.bytesOut.Load()
 			if currentUsed >= site.TrafficQuota {
 				w.Header().Set("Content-Type", "application/json")
 				w.WriteHeader(http.StatusForbidden)
-				w.Write([]byte(`{"error":"濠电姷鏁告慨鐑藉极閹间礁纾婚柣鏃傚劋瀹曞弶绻濋棃娑氬妞ゆ劘濮ら幈銊ノ熼幐搴ｃ€愰梻鍌氬亞閸ㄥ爼寮婚敐澶婄闁绘垵娲ら崣鏇犵磽娴ｇ懓鏁剧紒鎻掑⒔閹广垹鈹戠€ｎ偒妫冨┑鐐村灦閻燁垰螞閻愬樊娓婚柕鍫濇閻撱儵鏌ㄩ弴顏嗙暤闁糕斁鍋撳銈嗗笒閸犳艾顭囬幇鐗堢厽闁斥晛鍟粈鍫澝瑰鍜佺劸闁宠閰ｉ獮姗€鎼归銈傚亾椤掑嫭鈷戦梻鍫熺〒婢ф洘绻涚拠褏绉柟?}`))
+				w.Write([]byte(`{"error":"traffic quota exceeded"}`))
 				return
 			}
 		}
 
-		// 闂傚倸鍊搁崐椋庣矆娓氣偓瀹曨垶宕稿Δ鈧崒銊︾節婵犲倻澧曠痪鎯ь煼閺岀喖宕滆鐢盯鏌ｉ幘鍐叉殻闁哄本绋栫粻娑㈠箼閸愨敩锔界箾?WebSocket upgrade 闂傚倸鍊搁崐椋庣矆娓氣偓瀹曨垶宕稿Δ鈧崒銊︾節婵犲倻澧曠痪鎯ь煼閺岀喖宕滆鐢盯鏌ｉ幘鍐叉殻闁哄本绋栫粻娑㈠箼閸愨敩锔界箾?
+		// Throttle Emby playback progress heartbeats
+		if site.ThrottleProgress && isProgressPath(r.URL.Path) {
+			if !globalProgressLimiter.allow(progressThrottleKey(site.ID, r), 10*time.Second) {
+				w.WriteHeader(http.StatusNoContent)
+				return
+			}
+		}
+
+		// Serve cached images / System/Ping when enabled
+		cacheable := site.CacheStatic && r.Method == http.MethodGet && isStaticCachePath(r.URL.Path) && r.Header.Get("Range") == ""
+		if cacheable {
+			key := staticCacheKey(site.ID, r)
+			if entry, ok := globalStaticCache.get(key); ok {
+				for k, vv := range entry.header {
+					for _, v := range vv {
+						w.Header().Add(k, v)
+					}
+				}
+				w.Header().Set("X-Meridian-Cache", "HIT")
+				w.Header().Set("Content-Length", strconv.Itoa(len(entry.body)))
+				w.WriteHeader(entry.status)
+				n, _ := w.Write(entry.body)
+				inst.bytesOut.Add(int64(n))
+				return
+			}
+		}
+
+		// WebSocket upgrade
 		if isWebSocketUpgrade(r) {
 			wsTarget := upstreamTargetForRequest(r, target, playbackTarget)
 			if isRedirectMode {
@@ -903,7 +1210,7 @@ func (pm *ProxyManager) StartSite(site Site) error {
 			return
 		}
 
-		// 闂傚倸鍊搁崐椋庣矆娓氣偓瀹曨垶宕稿Δ鈧崒銊︾節婵犲倻澧曠痪鎯ь煼閺岀喖宕滆鐢盯鏌ｉ幘鍐叉殻闁哄本绋栫粻娑㈠箼閸愨敩锔界箾?Normal proxy with metering 闂傚倸鍊搁崐椋庣矆娓氣偓瀹曨垶宕稿Δ鈧崒銊︾節婵犲倻澧曠痪鎯ь煼閺岀喖宕滆鐢盯鏌ｉ幘鍐叉殻闁哄本绋栫粻娑㈠箼閸愨敩锔界箾?
+		// Normal proxy with metering (Range requests stream through as 206)
 		if r.Body != nil {
 			r.Body = &meteredReader{ReadCloser: r.Body, read: &inst.bytesIn}
 		}
@@ -916,10 +1223,25 @@ func (pm *ProxyManager) StartSite(site Site) error {
 				written:        &inst.bytesOut,
 				start:          time.Now(),
 			}
+		} else if cacheable {
+			rw = &capturingWriter{
+				ResponseWriter: w,
+				limit:          globalStaticCache.maxBody,
+				capture:        true,
+				written:        &inst.bytesOut,
+			}
 		} else {
 			rw = &meteredWriter{ResponseWriter: w, written: &inst.bytesOut}
 		}
 		proxy.ServeHTTP(rw, r)
+
+		if cw, ok := rw.(*capturingWriter); ok && cw.status == http.StatusOK && len(cw.buf) > 0 {
+			hdr := cw.header
+			if hdr == nil {
+				hdr = w.Header().Clone()
+			}
+			globalStaticCache.set(staticCacheKey(site.ID, r), cw.status, hdr, cw.buf, staticCacheTTL(r.URL.Path))
+		}
 	})
 
 	listenAddr := fmt.Sprintf(":%d", site.ListenPort)
@@ -1050,8 +1372,7 @@ func (pm *ProxyManager) GetTotalRequests() int64 {
 	return total
 }
 
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?// Diagnostics
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?
+// Diagnostics
 type DiagResult struct {
 	Upstreams DiagUpstreams `json:"upstreams"`
 	Health    DiagHealth    `json:"health"`
@@ -1102,10 +1423,15 @@ type DiagTLS struct {
 }
 
 type DiagHeaders struct {
-	UAApplied    bool   `json:"ua_applied"`
-	CurrentUA    string `json:"current_ua"`
-	ClientField  string `json:"client_field"`
-	VersionField string `json:"version_field"`
+	UAApplied        bool   `json:"ua_applied"`
+	CurrentUA        string `json:"current_ua"`
+	ClientField      string `json:"client_field"`
+	VersionField     string `json:"version_field"`
+	ProxyID          string `json:"proxy_id,omitempty"`
+	ProxyName        string `json:"proxy_name,omitempty"`
+	XForwardedFor    bool   `json:"x_forwarded_for"`
+	CacheStatic      bool   `json:"cache_static"`
+	ThrottleProgress bool   `json:"throttle_progress"`
 }
 
 type DiagProxy struct {
@@ -1471,10 +1797,15 @@ func diagnoseSite(site *Site, pm *ProxyManager) DiagResult {
 
 	// Headers
 	result.Headers = DiagHeaders{
-		UAApplied:    true,
-		CurrentUA:    profile.UserAgent,
-		ClientField:  profile.Client,
-		VersionField: profile.Version,
+		UAApplied:        true,
+		CurrentUA:        profile.UserAgent,
+		ClientField:      profile.Client,
+		VersionField:     profile.Version,
+		ProxyID:          site.ProxyID,
+		ProxyName:        site.ProxyName,
+		XForwardedFor:    true,
+		CacheStatic:      site.CacheStatic,
+		ThrottleProgress: site.ThrottleProgress,
 	}
 
 	// Proxy status
@@ -1486,8 +1817,7 @@ func diagnoseSite(site *Site, pm *ProxyManager) DiagResult {
 	return result
 }
 
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?// HTTP API
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?
+// HTTP API
 type App struct {
 	db *DB
 	pm *ProxyManager
@@ -1625,6 +1955,10 @@ func (a *App) handleSites(w http.ResponseWriter, r *http.Request) {
 			UAMode            string   `json:"ua_mode"`
 			Quota             int64    `json:"traffic_quota"`
 			SpeedLimit        int      `json:"speed_limit"`
+			ProxyID           string   `json:"proxy_id"`
+			ProxyName         string   `json:"proxy_name"`
+			CacheStatic       bool     `json:"cache_static"`
+			ThrottleProgress  bool     `json:"throttle_progress"`
 		}
 		if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 			a.jsonErr(w, 400, "invalid request")
@@ -1644,7 +1978,7 @@ func (a *App) handleSites(w http.ResponseWriter, r *http.Request) {
 		if req.StreamHosts == nil {
 			streamHostsJSON = []byte("[]")
 		}
-		site, err := a.db.CreateSite(req.Name, req.ListenPort, req.TargetURL, req.PlaybackTargetURL, req.PlaybackMode, string(streamHostsJSON), req.UAMode, req.Quota, req.SpeedLimit)
+		site, err := a.db.CreateSite(req.Name, req.ListenPort, req.TargetURL, req.PlaybackTargetURL, req.PlaybackMode, string(streamHostsJSON), req.UAMode, req.Quota, req.SpeedLimit, req.ProxyID, req.ProxyName, req.CacheStatic, req.ThrottleProgress)
 		if err != nil {
 			a.jsonErr(w, 500, err.Error())
 			return
@@ -1738,6 +2072,10 @@ func (a *App) handleSiteByID(w http.ResponseWriter, r *http.Request) {
 			UAMode            string    `json:"ua_mode"`
 			Quota             int64     `json:"traffic_quota"`
 			SpeedLimit        int       `json:"speed_limit"`
+			ProxyID           *string   `json:"proxy_id"`
+			ProxyName         *string   `json:"proxy_name"`
+			CacheStatic       *bool     `json:"cache_static"`
+			ThrottleProgress  *bool     `json:"throttle_progress"`
 		}
 		if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 			a.jsonErr(w, 400, "invalid request")
@@ -1759,7 +2097,23 @@ func (a *App) handleSiteByID(w http.ResponseWriter, r *http.Request) {
 		if req.UAMode == "" {
 			req.UAMode = oldSite.UAMode
 		}
-		if err := a.db.UpdateSite(id, req.Name, req.ListenPort, req.TargetURL, playbackTargetURL, playbackMode, streamHosts, req.UAMode, req.Quota, req.SpeedLimit); err != nil {
+		proxyID := oldSite.ProxyID
+		if req.ProxyID != nil {
+			proxyID = *req.ProxyID
+		}
+		proxyName := oldSite.ProxyName
+		if req.ProxyName != nil {
+			proxyName = *req.ProxyName
+		}
+		cacheStatic := oldSite.CacheStatic
+		if req.CacheStatic != nil {
+			cacheStatic = *req.CacheStatic
+		}
+		throttleProgress := oldSite.ThrottleProgress
+		if req.ThrottleProgress != nil {
+			throttleProgress = *req.ThrottleProgress
+		}
+		if err := a.db.UpdateSite(id, req.Name, req.ListenPort, req.TargetURL, playbackTargetURL, playbackMode, streamHosts, req.UAMode, req.Quota, req.SpeedLimit, proxyID, proxyName, cacheStatic, throttleProgress); err != nil {
 			a.jsonErr(w, 500, err.Error())
 			return
 		}
@@ -1774,7 +2128,7 @@ func (a *App) handleSiteByID(w http.ResponseWriter, r *http.Request) {
 				a.pm.StopSite(id)
 			}
 			if err := a.pm.StartSite(*site); err != nil {
-				if rollbackErr := a.db.UpdateSite(oldSite.ID, oldSite.Name, oldSite.ListenPort, oldSite.TargetURL, oldSite.PlaybackTargetURL, oldSite.PlaybackMode, oldSite.StreamHosts, oldSite.UAMode, oldSite.TrafficQuota, oldSite.SpeedLimit); rollbackErr != nil {
+				if rollbackErr := a.db.UpdateSite(oldSite.ID, oldSite.Name, oldSite.ListenPort, oldSite.TargetURL, oldSite.PlaybackTargetURL, oldSite.PlaybackMode, oldSite.StreamHosts, oldSite.UAMode, oldSite.TrafficQuota, oldSite.SpeedLimit, oldSite.ProxyID, oldSite.ProxyName, oldSite.CacheStatic, oldSite.ThrottleProgress); rollbackErr != nil {
 					a.jsonErr(w, 500, fmt.Sprintf("start updated site: %v; rollback update: %v", err, rollbackErr))
 					return
 				}
@@ -1848,7 +2202,7 @@ func (a *App) handleUAProfiles(w http.ResponseWriter, r *http.Request) {
 	a.jsonOK(w, profiles)
 }
 
-// GET /api/events 闂?Server-Sent Events stream
+// GET /api/events — Server-Sent Events stream
 func (a *App) handleSSE(w http.ResponseWriter, r *http.Request) {
 	flusher, ok := w.(http.Flusher)
 	if !ok {
@@ -1907,8 +2261,7 @@ func (a *App) sendSSEEvent(w http.ResponseWriter, flusher http.Flusher) {
 	flusher.Flush()
 }
 
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?// Main 闂?with graceful shutdown
-// 闂傚倸鍊搁崐椋庣矆娴ｅ搫顥氭い鎾卞灩绾惧潡鏌曢崼婵愭Ц缂佲偓婢舵劗鍙撻柛銉ｅ妿閳藉鏌ｉ妶澶岀暫闁哄矉绱曟禒锔炬嫚閹绘帒顫撻梻浣虹帛閹稿鎯勯鐐茶摕闁绘柨鍚嬮崵瀣亜閹哄棗浜炬繝寰枫倕袚缂佺粯鐩畷銊╊敊閸撗呭帨闂備礁鎼懟顖滅矓瑜版帒绠栨繝濠傚悩閻旂厧浼犻柛鏇炵仛缂嶅倿姊婚崒娆戭槮闁圭⒈鍋婇獮濠呯疀濞戞瑥浜楅梺璺ㄥ枔婵挳寮伴妷鈺傜叆闁绘柨鎼瓭缂備胶濮甸惄顖炲蓟閺囩喓绡€闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及閵夆晜鐓ラ柣鏂挎惈瀛濈紓浣哄У閻╊垶寮婚弴鐔虹瘈闊洦绋掗宥夋⒑缂佹绠栧┑鐐诧工椤繘宕崟顓熸闂佹悶鍎滈崘顭戠€遍梻鍌欑閹诧繝寮婚妸褎宕叉俊顖欒閸ゆ洟鏌＄仦璇插姎闁藉啰鍠栭弻鏇熷緞閸繂濮㈤梺鍛娚戦幃鍌氼潖閾忚鍏滈柛娑卞幘閸旂兘姊洪崨濠冪叆缂佸鎸抽崺銏狀吋閸滀胶鍙嗛梺鍓插亞閸犳捇宕㈤幘缁樷拺缂備焦锚閻忥箓鏌ㄥ顑芥斀妞ゆ梻鎳撴禍楣冩⒒閸屾瑧顦﹂柟纰卞亰楠炲﹨绠涘☉娆忎簵闂佽法鍠撴慨鎾及?
+// Main — with graceful shutdown
 var startTime = time.Now()
 
 // appVersion is overridable at build time via -ldflags "-X main.appVersion=vX.Y.Z".
@@ -1951,7 +2304,7 @@ func main() {
 
 	db, err := openDB(dbPath)
 	if err != nil {
-		log.Fatalf("闂傚倸鍊搁崐宄懊归崶褜娴栭柕濞炬櫆閸ゅ嫰鏌ょ粙璺ㄤ粵婵炲懐濮垫穱濠囧Χ閸屾矮澹曢梻浣风串缁蹭粙鎮樺璺虹闁告侗鍨遍崰鍡涙煕閺囥劌浜滃┑鈩冨▕濮婄粯鎷呯粵瀣秷闂佺瀛╂繛濠傜暦椤栫偛閿ゆ俊銈勭閳ь剙鐖奸弻鏇熷緞閸繂濮夐梺琛″亾闁兼亽鍎禍婊堟煛閸愩劌鈧敻骞忛敓鐘崇厱閹艰揪绱曠粻濠氭煙椤旂瓔娈滄俊顐㈠暙閳藉螣婵傚摜宕滈梺璇查閻忔艾顭垮Ο灏栧亾濮樼厧骞栨い顓炴穿缁犳稑鈽夋潏銊︽珖闂? %v", err)
+		log.Fatalf("open database: %v", err)
 	}
 	defer db.Close()
 
@@ -2009,7 +2362,7 @@ func main() {
 	// Embedded static files
 	staticFS, err := fs.Sub(web.StaticFiles, "static")
 	if err != nil {
-		log.Fatalf("闂傚倷娴囬褍顫濋敃鍌︾稏濠㈣埖鍔曠粻浼存煙闂傚鍔嶉柛銈嗗姈閵囧嫰寮介顫捕闂佹椿鍘介〃濠囧蓟濞戙垹鐒洪柛鎰典簴濡插牆鈹戦埥鍡椾簼闁挎洏鍨藉璇测槈閵忕姈銊︺亜閺嶎偄浠︽い搴＄Т椤啴濡堕崱妤€顫堢紓渚囧枟閻熲晛顕ｇ拠娴嬫闁靛繒濮烽惈鍕⒑缁嬫寧婀版い鏇熸尦椤㈡鎷呴搹璇″晭闂備礁鎼ˇ浼村垂閼搁潧绶為柛鏇ㄥ幐閸嬫捇宕归锝囧嚒闁诲孩鍑归崢濂糕€﹂崶顏嗙杸婵炴垼椴搁弲婵嬫⒑? %v", err)
+		log.Fatalf("embed static files: %v", err)
 	}
 	fileServer := http.FileServer(http.FS(staticFS))
 

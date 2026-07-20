@@ -57,6 +57,16 @@ async function loadSites() {
             <span class="site-row-label">UA 模式</span>
             <span class="pill ${uaClassMap[s.ua_mode] || 'pill-blue'}">${uaNameMap[s.ua_mode] || s.ua_mode}</span>
           </div>
+          ${s.proxy_id ? `
+          <div class="site-row">
+            <span class="site-row-label">EMOS 标识</span>
+            <span class="mono">${esc(s.proxy_id)}${s.proxy_name ? ' / ' + esc(s.proxy_name) : ''}</span>
+          </div>` : ''}
+          ${(s.cache_static || s.throttle_progress) ? `
+          <div class="site-row">
+            <span class="site-row-label">优化</span>
+            <span>${[s.cache_static ? '图片/Ping 缓存' : null, s.throttle_progress ? 'Progress 节流' : null].filter(Boolean).join(' · ')}</span>
+          </div>` : ''}
           ${s.traffic_quota > 0 ? `
           <div class="progress-wrap">
             <div class="progress-labels">
@@ -179,6 +189,30 @@ function showSiteModal(site) {
       <label>流量额度 (GB, 0=不限)</label>
       <input type="number" class="form-input" id="m-quota" value="${isEdit ? Math.round((site.traffic_quota || 0) / 1073741824) : 0}" placeholder="0">
     </div>
+    <div class="form-group">
+      <label>EMOS-PROXY-ID（可选）</label>
+      <input type="text" class="form-input" id="m-proxy-id" value="${isEdit ? esc(site.proxy_id || '') : ''}" placeholder="如：eABCDEFGHs">
+      <div class="form-help">反代到 EMOS 等要求身份头的上游时填写，会原样注入请求头 EMOS-PROXY-ID。</div>
+    </div>
+    <div class="form-group">
+      <label>EMOS-PROXY-NAME（可选）</label>
+      <input type="text" class="form-input" id="m-proxy-name" value="${isEdit ? esc(site.proxy_name || '') : ''}" placeholder="如：@emos">
+      <div class="form-help">会注入请求头 EMOS-PROXY-NAME。X-Forwarded-For 始终自动传递客户端 IP。</div>
+    </div>
+    <div class="form-group">
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+        <input type="checkbox" id="m-cache-static" ${(!isEdit || site.cache_static) ? 'checked' : ''}>
+        缓存图片与 System/Ping
+      </label>
+      <div class="form-help">缓存 /Items/*/Images/* 与 /System/Ping（含 /emby 前缀），降低上游压力。Range 视频流不会被缓存。</div>
+    </div>
+    <div class="form-group">
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+        <input type="checkbox" id="m-throttle-progress" ${(!isEdit || site.throttle_progress) ? 'checked' : ''}>
+        节流 Playing/Progress
+      </label>
+      <div class="form-help">对 /Sessions/Playing/Progress 限频（约 10 秒一次），多余上报直接 204。</div>
+    </div>
   `;
 
   document.getElementById('modal-footer').innerHTML = `
@@ -243,6 +277,10 @@ function showSiteModal(site) {
       listen_port: parseInt(document.getElementById('m-port').value),
       ua_mode: document.getElementById('m-ua').value,
       traffic_quota: parseInt(document.getElementById('m-quota').value || 0) * 1073741824,
+      proxy_id: document.getElementById('m-proxy-id').value.trim(),
+      proxy_name: document.getElementById('m-proxy-name').value.trim(),
+      cache_static: document.getElementById('m-cache-static').checked,
+      throttle_progress: document.getElementById('m-throttle-progress').checked,
     };
 
     if (!data.name || !data.target_url || !data.listen_port) {

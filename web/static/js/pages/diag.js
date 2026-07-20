@@ -176,7 +176,7 @@ function renderHeadersCard(headers, staggerClass) {
         </div>
         <div>
           <div class="diag-title">请求头配置</div>
-          <div class="diag-subtitle">Meridian 发往上游时将带上的 UA / Client</div>
+          <div class="diag-subtitle">Meridian 发往上游时将带上的 UA / EMOS / 转发头</div>
         </div>
       </div>
       <div class="diag-rows">
@@ -184,6 +184,11 @@ function renderHeadersCard(headers, staggerClass) {
         <div class="diag-row"><span class="diag-key">当前 UA</span><span class="diag-val diag-wrap">${diagText(headers.current_ua)}</span></div>
         <div class="diag-row"><span class="diag-key">Client 字段</span><span class="diag-val">${diagText(headers.client_field)}</span></div>
         <div class="diag-row"><span class="diag-key">Version 字段</span><span class="diag-val">${diagText(headers.version_field)}</span></div>
+        <div class="diag-row"><span class="diag-key">EMOS-PROXY-ID</span><span class="diag-val mono">${diagText(headers.proxy_id, '未配置')}</span></div>
+        <div class="diag-row"><span class="diag-key">EMOS-PROXY-NAME</span><span class="diag-val mono">${diagText(headers.proxy_name, '未配置')}</span></div>
+        <div class="diag-row"><span class="diag-key">X-Forwarded-For</span><span class="diag-val ${headers.x_forwarded_for ? 'good' : 'bad'}">${headers.x_forwarded_for ? '自动传递' : '未启用'}</span></div>
+        <div class="diag-row"><span class="diag-key">图片/Ping 缓存</span><span class="diag-val ${headers.cache_static ? 'good' : ''}">${headers.cache_static ? '已启用' : '关闭'}</span></div>
+        <div class="diag-row"><span class="diag-key">Progress 节流</span><span class="diag-val ${headers.throttle_progress ? 'good' : ''}">${headers.throttle_progress ? '已启用' : '关闭'}</span></div>
       </div>
     </div>
   `;
